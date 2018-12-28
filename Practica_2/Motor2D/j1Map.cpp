@@ -42,11 +42,9 @@ void j1Map::Draw()
 		{
 			image->data->position.x = image->data->width;
 		}
-		App->render->Blit(tex, image->data->position.x - image->data->width, image->data->position.y, &rect);
+		
 		App->render->Blit(tex, image->data->position.x, image->data->position.y, &rect); 
-		App->render->Blit(tex, image->data->position.x + image->data->width, image->data->position.y, &rect);
-		App->render->Blit(tex, image->data->position.x + 2*(image->data->width), image->data->position.y, &rect);
-		App->render->Blit(tex, image->data->position.x + 3*(image->data->width), image->data->position.y, &rect); 
+
 	}
 
 	p2List_item<MapLayer*>* item = data.map_layers.start;

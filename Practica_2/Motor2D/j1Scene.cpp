@@ -48,8 +48,8 @@ bool j1Scene::Start()
 	App->map->Load(levels_list.start->data->mapPath.GetString());
 	
 	actual_level = 0;
-	App->render->camera.x = -50; 
-	App->render->camera.y = -300; 
+	App->render->camera.x = 0; 
+	App->render->camera.y = 0; 
 
 	Create_UI_Elements();
 	App->audio->musicVolume = Slider_Music->Value_percentage;
@@ -396,8 +396,6 @@ void j1Scene::Level_Load(uint number)
 		//App->entityManager->player->CleanUp();
 		App->gui->Delete_UI_Elements();
 		App->map->Load(level_to_load->data->mapPath.GetString());
-		App->render->camera.x = -50;
-		App->render->camera.y = -300;
 		Create_UI_Elements();
 		//App->entityManager->player->collected_coins = 0; 
 		actual_level = level_to_load->data->lvl;
