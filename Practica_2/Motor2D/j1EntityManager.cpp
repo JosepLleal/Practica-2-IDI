@@ -7,6 +7,7 @@
 #include "j1EntityManager.h"
 #include "j1Scene.h"
 #include "j1Fruit.h"
+#include "j1Player.h"
 
 
 #include "Brofiler/Brofiler.h"
@@ -141,6 +142,12 @@ void j1EntityManager::DestroyThisEntity(j1Entity* entity)
 			RELEASE(iterator->data);
 		}
 	}
+}
+
+void j1EntityManager::AddPlayer()
+{
+	player = new j1Player(500, 300, PLAYER);
+	entities.add(player);
 }
 
 

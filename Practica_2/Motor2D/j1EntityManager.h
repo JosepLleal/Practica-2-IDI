@@ -13,6 +13,7 @@ class j1Player;
 enum EntityType
 {
 	FRUIT,
+	PLAYER,
 	UNKNOWN
 };
 
@@ -43,9 +44,12 @@ public:
 	void DestroyAllEntities(); 
 	void DestroyThisEntity(j1Entity* entity);
 
+	void AddPlayer();
+
 public:
 
 	p2List<j1Entity*> entities;
+	j1Player* player = nullptr;
 
 private:
 

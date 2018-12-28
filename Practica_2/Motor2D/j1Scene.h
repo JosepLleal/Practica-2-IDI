@@ -48,7 +48,7 @@ public:
 
 	//Load Level
 	void Level_Load(uint number = 0);
-	void RespawnCoinsHearts(); 
+	void RespawnEntities();
 	void Create_UI_Elements();
 
 public:

@@ -4,6 +4,7 @@
 #include "j1Map.h"
 #include "j1Fruit.h"
 #include "j1Scene.h"
+#include "j1Input.h"
 
 j1Fruit::j1Fruit(int x, int y, EntityType Type) : j1Entity(x, y, Type)
 {
@@ -79,7 +80,17 @@ void j1Fruit::Draw()
 
 void j1Fruit::OnCollision(Collider* c1, Collider* c2)
 {
-	
+	if (c2->type == COLLIDER_PLAYER)
+	{
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+		{
+			App->audio->PlayFx(fruit_fx);
+			App->entityManager->DestroyThisEntity(this);
+			//score + x
+			//fruits destroyed + 1
+
+		}
+	}
 }
 
 bool j1Fruit::Load(pugi::xml_node&)

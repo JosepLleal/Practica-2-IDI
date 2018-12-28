@@ -11,6 +11,7 @@
 #include "j1Collision.h"
 #include "j1Fadetoblack.h"
 #include "j1EntityManager.h"
+#include "j1Player.h"
 #include "j1Fonts.h"
 #include "j1Gui.h"
 #include "j1Gui_Elements.h"
@@ -52,6 +53,8 @@ bool j1Scene::Start()
 	App->render->camera.y = 0; 
 
 	Create_UI_Elements();
+	
+
 	App->audio->musicVolume = Slider_Music->Value_percentage;
 	App->audio->sfxVolume = Slider_FX->Value_percentage;
 	App->audio->SetMusicVolume();
@@ -375,11 +378,9 @@ void j1Scene::Level_Load(uint number)
 	{
 		App->audio->PlayMusic("audio/music/Galway.ogg");
 		App->gui->Delete_UI_Elements();
-		//App->entityManager->player->CleanUp();
 		App->map->Load(level_to_load->data->mapPath.GetString());
-		RespawnCoinsHearts();
+		RespawnEntities();
 		App->entityManager->Start();
-		//App->entityManager->player->Start();
 
 		Create_UI_Elements();
 
@@ -393,22 +394,21 @@ void j1Scene::Level_Load(uint number)
 		Coins = nullptr; 
 		Timer = nullptr; 
 		Score_num = nullptr;
-		//App->entityManager->player->CleanUp();
 		App->gui->Delete_UI_Elements();
 		App->map->Load(level_to_load->data->mapPath.GetString());
 		Create_UI_Elements();
-		//App->entityManager->player->collected_coins = 0; 
 		actual_level = level_to_load->data->lvl;
 	}
 
 }
 
 
-void j1Scene::RespawnCoinsHearts()
+void j1Scene::RespawnEntities()
 {
 	if (level_to_load->data->lvl == 1)
 	{
-		App->entityManager->CreateEntity(2215, 940, FRUIT);
+		App->entityManager->CreateEntity(500, 300, FRUIT);
+		App->entityManager->AddPlayer();
 		
 	}
 }
