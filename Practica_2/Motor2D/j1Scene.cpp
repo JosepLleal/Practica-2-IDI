@@ -308,7 +308,10 @@ bool j1Scene::Update(float dt)
 
 	App->input->GetMousePosition(Mouse_Pos.x, Mouse_Pos.y);
 
+	/*int timer = clock.ReadSec();
+	LOG("%i \n", timer);*/
 
+	SpawnFrequency();
 	
 	return true;
 }
@@ -390,6 +393,8 @@ void j1Scene::Level_Load(uint number)
 		App->audio->PlayMusic("audio/music/ingame.ogg");
 		App->gui->Delete_UI_Elements();
 		App->map->Load(level_to_load->data->mapPath.GetString());
+		App->entityManager->AddPlayer();
+		//SpawnFrequency();
 		RespawnEntities();
 		App->entityManager->Start();
 
@@ -410,6 +415,7 @@ void j1Scene::Level_Load(uint number)
 		Create_UI_Elements();
 		actual_level = level_to_load->data->lvl;
 	}
+
 
 }
 
@@ -435,6 +441,12 @@ EntityType j1Scene::RandomEntity()
 	return type;
 }
 
+void j1Scene::SpawnFrequency()
+{
+	float timer = clock.ReadSec();
+	LOG("%.2f\n", timer);
+}
+
 
 void j1Scene::RespawnEntities()
 {
@@ -445,7 +457,6 @@ void j1Scene::RespawnEntities()
 	App->entityManager->CreateEntity(300, 768, RandomEntity(), -28, 0);
 	App->entityManager->CreateEntity(800, 768, RandomEntity(), -40, -10);
 	App->entityManager->CreateEntity(400, 768, RandomEntity(), -40, 0);
-	App->entityManager->AddPlayer();
 		
 }
 

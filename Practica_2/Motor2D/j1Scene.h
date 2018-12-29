@@ -54,6 +54,7 @@ public:
 
 	void HideCursor(bool hide);
 	EntityType RandomEntity();
+	void SpawnFrequency();
 
 public:
 
@@ -75,6 +76,8 @@ public:
 	bool loading_saved_game = false;
 
 	Gui_Elements* Settings_Menu = nullptr;
+
+	j1Timer clock;
 
 private:
 
