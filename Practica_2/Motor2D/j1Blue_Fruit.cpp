@@ -53,8 +53,11 @@ bool j1Blue_Fruit::Update(float dt, bool do_logic)
 
 	speed.y += 1;
 
-	position.x += speed.x;
-	position.y += speed.y;
+	if (current_animation == &idle)
+	{
+		position.x += speed.x;
+		position.y += speed.y;
+	}
 
 	collider->SetPos(position.x, position.y);
 
@@ -66,6 +69,10 @@ bool j1Blue_Fruit::PostUpdate()
 {
 	Draw();
 	if (dead.Finished())
+	{
+		App->entityManager->DestroyThisEntity(this);
+	}
+	else if (position.y > 1000)
 	{
 		App->entityManager->DestroyThisEntity(this);
 	}

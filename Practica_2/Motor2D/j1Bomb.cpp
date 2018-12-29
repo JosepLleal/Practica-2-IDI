@@ -51,8 +51,11 @@ bool j1Bomb::Update(float dt, bool do_logic)
 	dt_bomb = dt;
 
 	speed.y += 1;
-	position.x += speed.x;
-	position.y += speed.y;
+	if (current_animation == &idle)
+	{
+		position.x += speed.x;
+		position.y += speed.y;
+	}
 
 	collider->SetPos(position.x, position.y+30);
 
@@ -64,6 +67,10 @@ bool j1Bomb::PostUpdate()
 {
 	Draw();
 	if (dead.Finished())
+	{
+		App->entityManager->DestroyThisEntity(this);
+	}
+	else if (position.y > 1000)
 	{
 		App->entityManager->DestroyThisEntity(this);
 	}

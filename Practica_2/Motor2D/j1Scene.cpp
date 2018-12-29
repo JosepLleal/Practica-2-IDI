@@ -308,10 +308,37 @@ bool j1Scene::Update(float dt)
 
 	App->input->GetMousePosition(Mouse_Pos.x, Mouse_Pos.y);
 
-	/*int timer = clock.ReadSec();
-	LOG("%i \n", timer);*/
+	LOG("Timer: %i", timer.Read());
 
-	SpawnFrequency();
+	if (actual_level == 1)
+	{
+		if (timer.Read() > 2000 && timer.Read() < 2050)
+		{
+			RespawnEntities(1);
+		}
+		else if (timer.Read() > 5000 && timer.Read() < 5050)
+		{
+			RespawnEntities(2);
+		}
+		else if (timer.Read() > 9000 && timer.Read() < 9025)
+		{
+			RespawnEntities(3);
+		}
+		else if (timer.Read() > 13000 && timer.Read() < 13050)
+		{
+			RespawnEntities(4);
+		}
+		else if (timer.Read() > 17000 && timer.Read() < 17050)
+		{
+			RespawnEntities(5);
+		}
+		else if (timer.Read() > 21000 && timer.Read() < 21050)
+		{
+			RespawnEntities(6);
+		}
+
+	}
+
 	
 	return true;
 }
@@ -394,13 +421,12 @@ void j1Scene::Level_Load(uint number)
 		App->gui->Delete_UI_Elements();
 		App->map->Load(level_to_load->data->mapPath.GetString());
 		App->entityManager->AddPlayer();
-		//SpawnFrequency();
-		RespawnEntities();
 		App->entityManager->Start();
 
 		Create_UI_Elements();
 
 		actual_level = level_to_load->data->lvl;
+		timer.Start();
 	}
 	// From level 1 to main menu
 	else if (actual_level == 1 && level_to_load->data->lvl == 0)
@@ -441,22 +467,58 @@ EntityType j1Scene::RandomEntity()
 	return type;
 }
 
-void j1Scene::SpawnFrequency()
-{
-	float timer = clock.ReadSec();
-	LOG("%.2f\n", timer);
-}
 
-
-void j1Scene::RespawnEntities()
+void j1Scene::RespawnEntities(int round)
 {
 	
-	App->entityManager->CreateEntity(500, 768, RandomEntity(), -30, 4);
-	App->entityManager->CreateEntity(300, 768, RandomEntity(), -35, 5);
-	App->entityManager->CreateEntity(600, 768, RandomEntity(), -25, 2);
-	App->entityManager->CreateEntity(300, 768, RandomEntity(), -28, 0);
-	App->entityManager->CreateEntity(800, 768, RandomEntity(), -40, -10);
-	App->entityManager->CreateEntity(400, 768, RandomEntity(), -40, 0);
+	if (round == 1)
+	{
+		App->entityManager->CreateEntity(500, 768, RandomEntity(), -30, 4);
+		App->entityManager->CreateEntity(300, 768, RandomEntity(), -35, 5);
+	}
+	else if (round == 2)
+	{
+		App->entityManager->CreateEntity(600, 768, RandomEntity(), -25, 2);
+		App->entityManager->CreateEntity(300, 768, RandomEntity(), -28, 0);
+		App->entityManager->CreateEntity(800, 768, RandomEntity(), -40, -10);
+	}
+	else if (round == 3)
+	{
+		App->entityManager->CreateEntity(600, 768, BOMB, -35, 0);
+	}
+	else if (round == 4)
+	{
+		App->entityManager->CreateEntity(500, 768, RandomEntity(), -30, 4);
+		App->entityManager->CreateEntity(300, 768, RandomEntity(), -35, 5);
+		App->entityManager->CreateEntity(600, 768, RandomEntity(), -25, 2);
+		App->entityManager->CreateEntity(300, 768, RandomEntity(), -28, 0);
+	}
+	else if (round == 5)
+	{
+		App->entityManager->CreateEntity(200, 768, RandomEntity(), -30, 4);
+		App->entityManager->CreateEntity(100, 768, RandomEntity(), -35, 5);
+		App->entityManager->CreateEntity(600, 768, RandomEntity(), -25, -2);
+		App->entityManager->CreateEntity(800, 768, RandomEntity(), -28, -5);
+	}
+	else if (round == 6)
+	{
+		App->entityManager->CreateEntity(200, 768, BOMB, -30, 0);
+		App->entityManager->CreateEntity(500, 768, RandomEntity(), -35, 0);
+		App->entityManager->CreateEntity(500, 768, RandomEntity(), -25, 0);
+		App->entityManager->CreateEntity(800, 768, BOMB, -30, 0);
+	}
+	else
+	{
+		App->entityManager->CreateEntity(500, 768, RandomEntity(), -30, 4);
+		App->entityManager->CreateEntity(300, 768, RandomEntity(), -35, 5);
+		App->entityManager->CreateEntity(600, 768, RandomEntity(), -25, 2);
+		App->entityManager->CreateEntity(300, 768, RandomEntity(), -28, 0);
+		App->entityManager->CreateEntity(800, 768, RandomEntity(), -40, -10);
+		App->entityManager->CreateEntity(400, 768, RandomEntity(), -40, 0);
+	}
+
+	App->entityManager->Start();
+
 		
 }
 

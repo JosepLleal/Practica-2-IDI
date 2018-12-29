@@ -49,12 +49,11 @@ public:
 
 	//Load Level
 	void Level_Load(uint number = 0);
-	void RespawnEntities();
+	void RespawnEntities(int round);
 	void Create_UI_Elements();
 
 	void HideCursor(bool hide);
 	EntityType RandomEntity();
-	void SpawnFrequency();
 
 public:
 
@@ -77,9 +76,11 @@ public:
 
 	Gui_Elements* Settings_Menu = nullptr;
 
-	j1Timer clock;
+	
 
 private:
+
+	j1Timer timer;
 
 	float dt_scene;
 	
