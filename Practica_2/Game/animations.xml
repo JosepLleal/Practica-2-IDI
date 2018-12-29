@@ -113,18 +113,19 @@
       <animation x="505" y="74" width="53" height="45"/>
     </run>
   </smasher>
-  <coin>
-    <idle speed ="0.1f" loop="true">
-      <animation x="0" y="0" width="28" height="26"/>
-      <animation x="30" y="0" width="28" height="26"/>
-      <animation x="60" y="0" width="28" height="26"/>
-      <animation x="90" y="0" width="28" height="26"/>
-      <animation x="120" y="0" width="28" height="26"/>
-      <animation x="150" y="0" width="28" height="26"/>
-      <animation x="180" y="0" width="28" height="26"/>
-      <animation x="210" y="0" width="28" height="26"/>
+  <red_fruit>
+    <idle speed ="0.1f" loop="false">
+      <animation x="57" y="235" width="65" height="65"/>
     </idle>
-  </coin>
+    <dead speed ="0.2f" loop="false">
+      <animation x="160" y="231" width="64" height="73"/>
+      <animation x="268" y="232" width="71" height="71"/>
+      <animation x="383" y="231" width="68" height="74"/>
+      <animation x="500" y="233" width="74" height="70"/>
+      <animation x="500" y="233" width="74" height="70"/>
+      <animation x="500" y="233" width="74" height="70"/>
+    </dead>
+  </red_fruit>
   <heart>
     <idle speed ="0.1f" loop="true">
       <animation x="0" y="0" width="27" height="25"/>

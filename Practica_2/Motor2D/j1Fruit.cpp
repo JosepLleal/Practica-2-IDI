@@ -10,7 +10,8 @@ j1Fruit::j1Fruit(int x, int y, EntityType Type) : j1Entity(x, y, Type)
 {
 	current_animation = NULL;
 
-	idle.LoadAnimations("coin", "idle");
+	idle.LoadAnimations("red_fruit", "idle");
+	dead.LoadAnimations("red_fruit", "dead");
 	position.x = x;
 	position.y = y;
 
@@ -26,11 +27,11 @@ bool j1Fruit::Start()
 {
 	if (graphics == nullptr)
 	{
-		graphics = App->tex->Load("textures/coin.png");
+		graphics = App->tex->Load("textures/spritesheet.png");
 	}
 	if (collider == nullptr)
 	{
-		collider = App->collision->AddCollider({ (int)position.x, (int)position.y, 28, 26 }, COLLIDER_FRUIT, App->entityManager);
+		collider = App->collision->AddCollider({ (int)position.x, (int)position.y, 65, 65 }, COLLIDER_FRUIT, App->entityManager);
 	}
 
 	fruit_fx = App->audio->LoadFx("audio/fx/get_coin.wav");
@@ -56,6 +57,10 @@ bool j1Fruit::Update(float dt, bool do_logic)
 bool j1Fruit::PostUpdate()
 {
 	Draw();
+	if (dead.Finished())
+	{
+		App->entityManager->DestroyThisEntity(this);
+	}
 	return true;
 }
 
@@ -82,10 +87,11 @@ void j1Fruit::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c2->type == COLLIDER_PLAYER)
 	{
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT && current_animation != &dead)
 		{
 			App->audio->PlayFx(fruit_fx);
-			App->entityManager->DestroyThisEntity(this);
+			current_animation = &dead;
+						
 			//score + x
 			//fruits destroyed + 1
 

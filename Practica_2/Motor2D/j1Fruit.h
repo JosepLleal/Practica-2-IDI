@@ -28,6 +28,7 @@ public:
 public:
 
 	Animation idle;
+	Animation dead;
 	float dt_fruit;
 
 	uint fruit_fx; 
