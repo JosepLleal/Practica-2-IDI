@@ -416,12 +416,12 @@ void j1Scene::RespawnEntities()
 {
 	if (level_to_load->data->lvl == 1)
 	{
-		App->entityManager->CreateEntity(500, 300, RED_FRUIT);
-		App->entityManager->CreateEntity(300, 500, YELLOW_FRUIT);
-		App->entityManager->CreateEntity(600, 400, BLUE_FRUIT);
-		App->entityManager->CreateEntity(300, 200, GREEN_FRUIT);
-		App->entityManager->CreateEntity(800, 500, PURPLE_FRUIT);
-		App->entityManager->CreateEntity(400, 400, BOMB);
+		App->entityManager->CreateEntity(500, 768, RED_FRUIT, -30, 4);
+		App->entityManager->CreateEntity(300, 768, YELLOW_FRUIT, -35, 5);
+		App->entityManager->CreateEntity(600, 768, BLUE_FRUIT, -25, 2);
+		App->entityManager->CreateEntity(300, 768, GREEN_FRUIT, -28, 0);
+		App->entityManager->CreateEntity(800, 768, PURPLE_FRUIT, -40, -10);
+		App->entityManager->CreateEntity(400, 768, BOMB, -40, 0);
 		App->entityManager->AddPlayer();
 		
 	}

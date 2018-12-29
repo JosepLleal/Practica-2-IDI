@@ -9,7 +9,7 @@ class j1Bomb : public j1Entity
 {
 public:
 
-	j1Bomb(int x, int y, EntityType type);
+	j1Bomb(int x, int y, EntityType type, int speed_y, int speed_x);
 
 	virtual ~j1Bomb();
 

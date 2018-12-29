@@ -44,7 +44,7 @@ public:
 
 	void OnCollision(Collider* c1, Collider* c2);
 
-	void CreateEntity(int x, int y, EntityType type);
+	void CreateEntity(int x, int y, EntityType type, int speed_y, int speed_x);
 
 	void DestroyAllEntities(); 
 	void DestroyThisEntity(j1Entity* entity);

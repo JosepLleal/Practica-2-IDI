@@ -110,28 +110,28 @@ void j1EntityManager::OnCollision(Collider* c1, Collider* c2)
 	}
 }
 
-void j1EntityManager::CreateEntity(int x, int y, EntityType type)
+void j1EntityManager::CreateEntity(int x, int y, EntityType type, int speed_y, int speed_x)
 {
 	j1Entity* ret = nullptr;
 	switch (type)
 	{
 	case EntityType::RED_FRUIT:
-		ret = new j1Red_Fruit(x, y, type);
+		ret = new j1Red_Fruit(x, y, type, speed_y, speed_x);
 		break;
 	case EntityType::YELLOW_FRUIT:
-		ret = new j1Yellow_Fruit(x, y, type);
+		ret = new j1Yellow_Fruit(x, y, type, speed_y, speed_x);
 		break;
 	case EntityType::BLUE_FRUIT:
-		ret = new j1Blue_Fruit(x, y, type);
+		ret = new j1Blue_Fruit(x, y, type, speed_y, speed_x);
 		break;
 	case EntityType::GREEN_FRUIT:
-		ret = new j1Green_Fruit(x, y, type);
+		ret = new j1Green_Fruit(x, y, type, speed_y, speed_x);
 		break;
 	case EntityType::PURPLE_FRUIT:
-		ret = new j1Purple_Fruit(x, y, type);
+		ret = new j1Purple_Fruit(x, y, type, speed_y, speed_x);
 		break;
 	case EntityType::BOMB:
-		ret = new j1Bomb(x, y, type);
+		ret = new j1Bomb(x, y, type, speed_y, speed_x);
 		break;
 	}
 	if (ret != nullptr)

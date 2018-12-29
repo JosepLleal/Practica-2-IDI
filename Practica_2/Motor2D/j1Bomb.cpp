@@ -6,7 +6,7 @@
 #include "j1Scene.h"
 #include "j1Input.h"
 
-j1Bomb::j1Bomb(int x, int y, EntityType Type) : j1Entity(x, y, Type)
+j1Bomb::j1Bomb(int x, int y, EntityType Type, int speed_y, int speed_x) : j1Entity(x, y, Type, speed_y, speed_x)
 {
 	current_animation = NULL;
 
@@ -14,6 +14,9 @@ j1Bomb::j1Bomb(int x, int y, EntityType Type) : j1Entity(x, y, Type)
 	dead.LoadAnimations("bomb", "dead");
 	position.x = x;
 	position.y = y;
+
+	speed.x = speed_x;
+	speed.y = speed_y;
 
 	type = Type;
 
@@ -45,8 +48,12 @@ bool j1Bomb::Start()
 
 bool j1Bomb::Update(float dt, bool do_logic)
 {
-
 	dt_bomb = dt;
+
+	speed.y += 1;
+	position.x += speed.x;
+	position.y += speed.y;
+
 	collider->SetPos(position.x, position.y+30);
 
 

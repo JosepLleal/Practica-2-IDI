@@ -6,7 +6,7 @@
 #include "j1Scene.h"
 #include "j1Input.h"
 
-j1Yellow_Fruit::j1Yellow_Fruit(int x, int y, EntityType Type) : j1Entity(x, y, Type)
+j1Yellow_Fruit::j1Yellow_Fruit(int x, int y, EntityType Type, int speed_y, int speed_x) : j1Entity(x, y, Type, speed_y, speed_x)
 {
 	current_animation = NULL;
 
@@ -14,6 +14,9 @@ j1Yellow_Fruit::j1Yellow_Fruit(int x, int y, EntityType Type) : j1Entity(x, y, T
 	dead.LoadAnimations("yellow_fruit", "dead");
 	position.x = x;
 	position.y = y;
+
+	speed.x = speed_x;
+	speed.y = speed_y;
 
 	type = Type;
 
@@ -47,6 +50,12 @@ bool j1Yellow_Fruit::Update(float dt, bool do_logic)
 {
 
 	dt_fruit = dt;
+
+	speed.y += 1;
+
+	position.x += speed.x;
+	position.y += speed.y;
+
 	collider->SetPos(position.x, position.y);
 
 

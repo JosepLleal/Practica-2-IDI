@@ -6,7 +6,7 @@
 #include "j1Scene.h"
 #include "j1Input.h"
 
-j1Player::j1Player(int x, int y, EntityType Type) : j1Entity(x, y, Type)
+j1Player::j1Player(int x, int y, EntityType Type) : j1Entity(x, y, Type, 0, 0)
 {
 	current_animation = NULL;
 

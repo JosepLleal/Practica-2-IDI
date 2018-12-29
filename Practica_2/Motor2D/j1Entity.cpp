@@ -8,6 +8,6 @@
 #include "j1Window.h"
 #include "j1Textures.h"
 
-j1Entity::j1Entity(int x, int y, EntityType type){}
+j1Entity::j1Entity(int x, int y, EntityType type, int speed_y, int speed_x){}
 
 

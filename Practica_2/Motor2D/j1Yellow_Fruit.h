@@ -9,7 +9,7 @@ class j1Yellow_Fruit : public j1Entity
 {
 public:
 
-	j1Yellow_Fruit(int x, int y, EntityType type);
+	j1Yellow_Fruit(int x, int y, EntityType type, int speed_y, int speed_x);
 
 	virtual ~j1Yellow_Fruit();
 

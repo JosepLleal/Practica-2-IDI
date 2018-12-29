@@ -20,7 +20,7 @@ class j1Entity
 {
 public:
 
-	j1Entity(int x, int y, EntityType type);
+	j1Entity(int x, int y, EntityType type, int speed_y, int speed_x);
 	virtual ~j1Entity() {};
 
 	virtual bool Start() { return true; };
