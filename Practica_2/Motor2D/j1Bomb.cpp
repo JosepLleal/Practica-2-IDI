@@ -37,7 +37,7 @@ bool j1Bomb::Start()
 		collider = App->collision->AddCollider({ (int)position.x, (int)position.y, 65, 65 }, COLLIDER_FRUIT, App->entityManager);
 	}
 
-	bomb_fx = App->audio->LoadFx("audio/fx/squashing2.wav");
+	bomb_fx = App->audio->LoadFx("audio/fx/explosion1.wav");
 
 	position.x = start_pos.x;
 	position.y = start_pos.y;
@@ -50,12 +50,17 @@ bool j1Bomb::Update(float dt, bool do_logic)
 {
 	dt_bomb = dt;
 
-	speed.y += 1;
-	if (current_animation == &idle)
+	if (!App->scene->pause)
 	{
-		position.x += speed.x;
-		position.y += speed.y;
+		speed.y += 1;
+		if (current_animation == &idle)
+		{
+			position.x += speed.x;
+			position.y += speed.y;
+		}
 	}
+
+	
 
 	collider->SetPos(position.x, position.y+30);
 

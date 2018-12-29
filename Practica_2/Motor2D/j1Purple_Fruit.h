@@ -32,6 +32,7 @@ public:
 	float dt_fruit;
 
 	uint fruit_fx;
+	uint fall_fx;
 
 };
 

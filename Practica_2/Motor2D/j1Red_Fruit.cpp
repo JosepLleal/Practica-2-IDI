@@ -38,6 +38,7 @@ bool j1Red_Fruit::Start()
 	}
 
 	fruit_fx = App->audio->LoadFx("audio/fx/squashing.wav");
+	fall_fx = App->audio->LoadFx("audio/fx/loselife1.wav");
 
 	position.x = start_pos.x;
 	position.y = start_pos.y;
@@ -50,12 +51,14 @@ bool j1Red_Fruit::Update(float dt, bool do_logic)
 {
 	dt_fruit = dt;
 
-	speed.y += 1;
-
-	if (current_animation == &idle)
+	if (!App->scene->pause)
 	{
-		position.x += speed.x;
-		position.y += speed.y;
+		speed.y += 1;
+		if (current_animation == &idle)
+		{
+			position.x += speed.x;
+			position.y += speed.y;
+		}
 	}
 
 	collider->SetPos(position.x , position.y );
@@ -73,6 +76,7 @@ bool j1Red_Fruit::PostUpdate()
 	}
 	else if (position.y > 1000)
 	{
+		App->audio->PlayFx(fall_fx);
 		App->entityManager->DestroyThisEntity(this);
 	}
 	return true;
