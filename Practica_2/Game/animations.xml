@@ -114,7 +114,7 @@
     </run>
   </smasher>
   <red_fruit>
-    <idle speed ="0.1f" loop="false">
+    <idle speed ="0.1f" loop="true">
       <animation x="57" y="235" width="65" height="65"/>
     </idle>
     <dead speed ="0.2f" loop="false">
@@ -126,6 +126,11 @@
       <animation x="500" y="233" width="74" height="70"/>
     </dead>
   </red_fruit>
+  <yellow_fruit>
+    <idle speed="0.1f" loop="false">
+      <animation x="60" y="439" width="59" height="60"/>
+    </idle>
+  </yellow_fruit>
   <heart>
     <idle speed ="0.1f" loop="true">
       <animation x="0" y="0" width="27" height="25"/>

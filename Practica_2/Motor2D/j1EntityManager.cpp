@@ -6,7 +6,8 @@
 #include "j1Collision.h"
 #include "j1EntityManager.h"
 #include "j1Scene.h"
-#include "j1Fruit.h"
+#include "j1Red_Fruit.h"
+#include "j1Yellow_Fruit.h"
 #include "j1Player.h"
 
 
@@ -110,8 +111,11 @@ void j1EntityManager::CreateEntity(int x, int y, EntityType type)
 	j1Entity* ret = nullptr;
 	switch (type)
 	{
-	case EntityType::FRUIT:
-		ret = new j1Fruit(x, y, type);
+	case EntityType::RED_FRUIT:
+		ret = new j1Red_Fruit(x, y, type);
+		break;
+	case EntityType::YELLOW_FRUIT:
+		ret = new j1Yellow_Fruit(x, y, type);
 		break;
 	}
 	if (ret != nullptr)

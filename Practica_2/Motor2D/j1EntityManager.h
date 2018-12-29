@@ -12,7 +12,9 @@ class j1Player;
 
 enum EntityType
 {
-	FRUIT,
+	RED_FRUIT,
+	YELLOW_FRUIT,
+	BOMB,
 	PLAYER,
 	UNKNOWN
 };

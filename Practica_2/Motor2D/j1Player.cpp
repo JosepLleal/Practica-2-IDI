@@ -25,7 +25,7 @@ bool j1Player::Start()
 {
 	if (graphics == nullptr)
 	{
-		graphics = App->gui->GetAtlas();
+		graphics = App->tex->Load("gui/atlas.png");
 	}
 	if (collider == nullptr)
 	{
@@ -38,7 +38,7 @@ bool j1Player::Start()
 	position.y = start_pos.y;
 
 	rect = { 656,327,35,37 };
-
+	
 	added = true;
 
 	return true;
@@ -58,7 +58,6 @@ bool j1Player::Update(float dt, bool do_logic)
 		collider->SetPos(position.x, position.y);
 	}
 	
-
 
 	return true;
 }
@@ -84,7 +83,6 @@ bool j1Player::CleanUp()
 
 void j1Player::Draw()
 {
-	
 	App->render->Blit(graphics, (int)position.x, (int)position.y, &rect, SDL_FLIP_NONE);
 }
 

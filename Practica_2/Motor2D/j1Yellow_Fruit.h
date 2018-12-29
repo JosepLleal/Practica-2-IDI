@@ -1,17 +1,17 @@
-#ifndef __j1FRUIT_H__
-#define __j1FRUIT_H__
+#ifndef __j1YELLOW_FRUIT_H__
+#define __j1YELLOW_FRUIT_H__
 
 #include "j1Entity.h"
 #include "j1Render.h"
 #include "PugiXml/src/pugixml.hpp"
 
-class j1Fruit : public j1Entity
+class j1Yellow_Fruit : public j1Entity
 {
 public:
 
-	j1Fruit(int x, int y, EntityType type);
+	j1Yellow_Fruit(int x, int y, EntityType type);
 
-	virtual ~j1Fruit();
+	virtual ~j1Yellow_Fruit();
 
 	bool Start();
 	bool Update(float dt, bool do_logic);
@@ -22,7 +22,7 @@ public:
 
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
-	
+
 	void Draw();
 
 public:
@@ -31,8 +31,8 @@ public:
 	Animation dead;
 	float dt_fruit;
 
-	uint fruit_fx; 
+	uint fruit_fx;
 
 };
 
-#endif // __j1FRUIT_H__
+#endif // __j1YELLOW_FRUIT_H__

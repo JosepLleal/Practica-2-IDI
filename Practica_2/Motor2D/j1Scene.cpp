@@ -396,7 +396,7 @@ void j1Scene::Level_Load(uint number)
 		actual_level = level_to_load->data->lvl;
 	}
 	// From level 1 to main menu
-	else if ((actual_level == 1) && (level_to_load->data->lvl == 0))
+	else if (actual_level == 1 && level_to_load->data->lvl == 0)
 	{
 		App->audio->PlayMusic("audio/music/main_menu.ogg");
 		App->entityManager->DestroyAllEntities();
@@ -416,7 +416,8 @@ void j1Scene::RespawnEntities()
 {
 	if (level_to_load->data->lvl == 1)
 	{
-		App->entityManager->CreateEntity(500, 300, FRUIT);
+		App->entityManager->CreateEntity(500, 300, RED_FRUIT);
+		App->entityManager->CreateEntity(300, 500, YELLOW_FRUIT);
 		App->entityManager->AddPlayer();
 		
 	}

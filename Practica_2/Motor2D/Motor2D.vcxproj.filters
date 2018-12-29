@@ -73,11 +73,14 @@
     <ClCompile Include="j1Gui_Slider.cpp">
       <Filter>Desenvolupament  ========\Modules\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="j1Fruit.cpp">
-      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="j1Player.cpp">
       <Filter>Desenvolupament  ========\Modules\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Red_Fruit.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Yellow_Fruit.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -174,11 +177,14 @@
     <ClInclude Include="j1Gui_Slider.h">
       <Filter>Desenvolupament  ========\Modules\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="j1Fruit.h">
-      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="j1Player.h">
       <Filter>Desenvolupament  ========\Modules\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Red_Fruit.h">
+      <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Yellow_Fruit.h">
+      <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +211,9 @@
     </Filter>
     <Filter Include="Desenvolupament  ========\Modules\GUI">
       <UniqueIdentifier>{c5fbd4ce-9893-4147-b276-e92d096fd1b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Modules\Entities\Fruits">
+      <UniqueIdentifier>{ab3f8bff-607f-4714-a393-a7cfb2bf4266}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
