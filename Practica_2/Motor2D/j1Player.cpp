@@ -84,8 +84,8 @@ bool j1Player::CleanUp()
 
 void j1Player::Draw()
 {
-	//SDL_Rect rect = current_animation->GetCurrentFrame(dt_player);
-	//App->render->Blit(graphics, (int)position.x, (int)position.y, &rect, SDL_FLIP_NONE);
+	SDL_Rect rect = current_animation->GetCurrentFrame(dt_player);
+	App->render->Blit(graphics, (int)position.x, (int)position.y, &rect, SDL_FLIP_NONE);
 }
 
 void j1Player::OnCollision(Collider* c1, Collider* c2)

@@ -53,7 +53,6 @@ bool j1Scene::Start()
 	App->render->camera.y = 0; 
 
 	Create_UI_Elements();
-	
 
 	App->audio->musicVolume = Slider_Music->Value_percentage;
 	App->audio->sfxVolume = Slider_FX->Value_percentage;
@@ -116,6 +115,7 @@ bool j1Scene::Update(float dt)
 		{
 			if (iterator->data == Menu)
 			{
+
 				for (p2List_item<Gui_Elements*>* iterator = Menu->childrens.start; iterator != nullptr; iterator = iterator->next)
 				{
 					if (iterator->data->type == Element_type::BUTTON && iterator->data->do_action == true && App->fade->IsFadingOut() == false)
@@ -129,12 +129,14 @@ bool j1Scene::Update(float dt)
 						{
 							start_pos = false;
 							App->SaveGame();
+							
 						}
 						
 						else if (iterator->data->funct == Function::SETTINGS)
 						{
 							Menu->visible = !Menu->visible;
 							Settings_Menu->visible = !Settings_Menu->visible;
+							
 						}
 						else if (iterator->data->funct == Function::MENU)
 						{
@@ -271,6 +273,7 @@ bool j1Scene::Update(float dt)
 	{
 		if (loading_menu == true)
 		{
+			HideCursor(false);
 			Level_Load(0); 
 			if (pause)
 				pause = false;
@@ -323,31 +326,37 @@ bool j1Scene::PostUpdate()
 			{
 				pause = !pause;
 				Menu->visible = !Menu->visible;
+			
 			}
 			else if (!Menu->visible && !Settings_Menu->visible)
 			{
 				pause = !pause;
 				Menu->visible = !Menu->visible;
+				
 			}
 			else if (!Menu->visible && Settings_Menu->visible)
 			{
 				Menu->visible = !Menu->visible;
 				Settings_Menu->visible = !Settings_Menu->visible;
+				
 			}
 		}
 		else
 		{
+
 			if (Settings_Menu->visible)
 			{
 				Settings_Menu->visible = !Settings_Menu->visible;
 				Main_Menu->visible = !Main_Menu->visible;
 				pause = !pause;
+				
 			}
 			else if (Credits_Menu->visible)
 			{
 				Credits_Menu->visible = !Credits_Menu->visible;
 				Main_Menu->visible = !Main_Menu->visible;
 				pause = !pause;
+			
 			}
 		}
 	}
@@ -465,6 +474,7 @@ void j1Scene::Create_UI_Elements()
 		
 		if (level_to_load->data->lvl == 1 )
 		{
+			HideCursor(true);
 			// PLAYER LIVES 
 
 			/*if (App->entityManager->player->lifes == 5)
@@ -484,7 +494,7 @@ void j1Scene::Create_UI_Elements()
 			Gui_Elements* Score = App->gui->Create_Label(Element_type::LABEL, { 820, 720 }, true, true, "SCORE:", { 255, 255, 255, 0 }, App->font->default, nullptr);
 			Score_num = App->gui->Create_Label(Element_type::LABEL, {100, 0 }, true, true, "0", { 255, 255, 255, 0 }, App->font->default, Score);
 		}
-		
+
 		Menu = App->gui->Create_Image(Element_type::IMAGE, { 355, 200 }, { 8, 459, 315, 402 }, false, false, false, App->gui->GetAtlas());
 		
 		Gui_Elements* Resume = App->gui->Create_Button(Element_type::BUTTON, { 62, 45 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, false, false, App->gui->GetAtlas(), Function::RESUME, Menu);
@@ -504,6 +514,7 @@ void j1Scene::Create_UI_Elements()
 
 
 	}
+
 	Settings_Menu = App->gui->Create_Image(Element_type::IMAGE, { 205, 160 }, { 6, 7, 611, 442 }, false, false, false, App->gui->GetAtlas());
 
 	Gui_Elements* Esc = App->gui->Create_Button(Element_type::BUTTON, { 586, -10 }, { 460, 463 , 35, 38 }, { 422, 463 , 35, 38 }, { 384, 463 , 35, 38 }, false, false, App->gui->GetAtlas(), Function::RESUME, Settings_Menu);
@@ -524,4 +535,16 @@ void j1Scene::Create_UI_Elements()
 	App->gui->Create_Label(Element_type::LABEL, { 50, 6 }, false, false, "APPLY", { 255,255,255,0 }, App->font->default, Apply);
 
 	
+}
+
+void j1Scene::HideCursor(bool hide)
+{
+	if (hide)
+	{
+		SDL_ShowCursor(SDL_DISABLE);
+	}
+	else
+	{
+		SDL_ShowCursor(SDL_ENABLE);
+	}
 }

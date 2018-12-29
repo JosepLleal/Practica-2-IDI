@@ -51,6 +51,8 @@ public:
 	void RespawnEntities();
 	void Create_UI_Elements();
 
+	void HideCursor(bool hide);
+
 public:
 
 	p2List<level*> levels_list;
