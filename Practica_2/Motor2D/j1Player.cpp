@@ -10,7 +10,6 @@ j1Player::j1Player(int x, int y, EntityType Type) : j1Entity(x, y, Type)
 {
 	current_animation = NULL;
 
-	idle.LoadAnimations("coin", "idle");
 	position.x = x;
 	position.y = y;
 
@@ -26,7 +25,7 @@ bool j1Player::Start()
 {
 	if (graphics == nullptr)
 	{
-		graphics = App->tex->Load("textures/coin.png");
+		graphics = App->gui->GetAtlas();
 	}
 	if (collider == nullptr)
 	{
@@ -38,9 +37,10 @@ bool j1Player::Start()
 	position.x = start_pos.x;
 	position.y = start_pos.y;
 
+	rect = { 656,327,35,37 };
+
 	added = true;
 
-	current_animation = &idle;
 	return true;
 }
 
@@ -84,7 +84,7 @@ bool j1Player::CleanUp()
 
 void j1Player::Draw()
 {
-	SDL_Rect rect = current_animation->GetCurrentFrame(dt_player);
+	
 	App->render->Blit(graphics, (int)position.x, (int)position.y, &rect, SDL_FLIP_NONE);
 }
 

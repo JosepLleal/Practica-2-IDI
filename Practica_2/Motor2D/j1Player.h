@@ -32,6 +32,9 @@ public:
 	bool added = false;
 	uint player_fx;
 
+private:
+
+	SDL_Rect rect;
 };
 
 #endif // __j1PLAYER_H__
