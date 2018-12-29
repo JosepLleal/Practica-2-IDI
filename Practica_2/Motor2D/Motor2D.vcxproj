@@ -76,6 +76,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="j1Blue_Fruit.cpp" />
+    <ClCompile Include="j1Bomb.cpp" />
+    <ClCompile Include="j1Green_Fruit.cpp" />
+    <ClCompile Include="j1Purple_Fruit.cpp" />
     <ClCompile Include="j1Red_Fruit.cpp" />
     <ClCompile Include="j1Collision.cpp" />
     <ClCompile Include="j1Entity.cpp" />
@@ -106,6 +110,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="j1Blue_Fruit.h" />
+    <ClInclude Include="j1Bomb.h" />
+    <ClInclude Include="j1Green_Fruit.h" />
+    <ClInclude Include="j1Purple_Fruit.h" />
     <ClInclude Include="j1Red_Fruit.h" />
     <ClInclude Include="j1Collision.h" />
     <ClInclude Include="j1Entity.h" />

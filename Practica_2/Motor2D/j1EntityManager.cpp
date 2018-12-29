@@ -8,6 +8,10 @@
 #include "j1Scene.h"
 #include "j1Red_Fruit.h"
 #include "j1Yellow_Fruit.h"
+#include "j1Blue_Fruit.h"
+#include "j1Green_Fruit.h"
+#include "j1Purple_Fruit.h"
+#include "j1Bomb.h"
 #include "j1Player.h"
 
 
@@ -116,6 +120,18 @@ void j1EntityManager::CreateEntity(int x, int y, EntityType type)
 		break;
 	case EntityType::YELLOW_FRUIT:
 		ret = new j1Yellow_Fruit(x, y, type);
+		break;
+	case EntityType::BLUE_FRUIT:
+		ret = new j1Blue_Fruit(x, y, type);
+		break;
+	case EntityType::GREEN_FRUIT:
+		ret = new j1Green_Fruit(x, y, type);
+		break;
+	case EntityType::PURPLE_FRUIT:
+		ret = new j1Purple_Fruit(x, y, type);
+		break;
+	case EntityType::BOMB:
+		ret = new j1Bomb(x, y, type);
 		break;
 	}
 	if (ret != nullptr)

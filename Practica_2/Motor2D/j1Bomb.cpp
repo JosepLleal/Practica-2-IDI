@@ -2,16 +2,16 @@
 #include "j1Collision.h"
 #include "j1Scene.h"
 #include "j1Map.h"
-#include "j1Yellow_Fruit.h"
+#include "j1Bomb.h"
 #include "j1Scene.h"
 #include "j1Input.h"
 
-j1Yellow_Fruit::j1Yellow_Fruit(int x, int y, EntityType Type) : j1Entity(x, y, Type)
+j1Bomb::j1Bomb(int x, int y, EntityType Type) : j1Entity(x, y, Type)
 {
 	current_animation = NULL;
 
-	idle.LoadAnimations("yellow_fruit", "idle");
-	dead.LoadAnimations("yellow_fruit", "dead");
+	idle.LoadAnimations("bomb", "idle");
+	dead.LoadAnimations("bomb", "dead");
 	position.x = x;
 	position.y = y;
 
@@ -21,9 +21,9 @@ j1Yellow_Fruit::j1Yellow_Fruit(int x, int y, EntityType Type) : j1Entity(x, y, T
 	start_pos.y = y;
 }
 
-j1Yellow_Fruit::~j1Yellow_Fruit() {}
+j1Bomb::~j1Bomb() {}
 
-bool j1Yellow_Fruit::Start()
+bool j1Bomb::Start()
 {
 	if (graphics == nullptr)
 	{
@@ -34,7 +34,7 @@ bool j1Yellow_Fruit::Start()
 		collider = App->collision->AddCollider({ (int)position.x, (int)position.y, 65, 65 }, COLLIDER_FRUIT, App->entityManager);
 	}
 
-	fruit_fx = App->audio->LoadFx("audio/fx/get_coin.wav");
+	bomb_fx = App->audio->LoadFx("audio/fx/get_coin.wav");
 
 	position.x = start_pos.x;
 	position.y = start_pos.y;
@@ -43,17 +43,17 @@ bool j1Yellow_Fruit::Start()
 	return true;
 }
 
-bool j1Yellow_Fruit::Update(float dt, bool do_logic)
+bool j1Bomb::Update(float dt, bool do_logic)
 {
 
-	dt_fruit = dt;
-	collider->SetPos(position.x, position.y);
+	dt_bomb = dt;
+	collider->SetPos(position.x, position.y+30);
 
 
 	return true;
 }
 
-bool j1Yellow_Fruit::PostUpdate()
+bool j1Bomb::PostUpdate()
 {
 	Draw();
 	if (dead.Finished())
@@ -63,7 +63,7 @@ bool j1Yellow_Fruit::PostUpdate()
 	return true;
 }
 
-bool j1Yellow_Fruit::CleanUp()
+bool j1Bomb::CleanUp()
 {
 	App->tex->UnLoad(graphics);
 	graphics = nullptr;
@@ -76,19 +76,19 @@ bool j1Yellow_Fruit::CleanUp()
 	return true;
 }
 
-void j1Yellow_Fruit::Draw()
+void j1Bomb::Draw()
 {
-	SDL_Rect rect = current_animation->GetCurrentFrame(dt_fruit);
+	SDL_Rect rect = current_animation->GetCurrentFrame(dt_bomb);
 	App->render->Blit(graphics, (int)position.x, (int)position.y, &rect, SDL_FLIP_NONE);
 }
 
-void j1Yellow_Fruit::OnCollision(Collider* c1, Collider* c2)
+void j1Bomb::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c2->type == COLLIDER_PLAYER)
 	{
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT && current_animation != &dead)
 		{
-			App->audio->PlayFx(fruit_fx);
+			App->audio->PlayFx(bomb_fx);
 			current_animation = &dead;
 
 			//score + x
@@ -98,11 +98,11 @@ void j1Yellow_Fruit::OnCollision(Collider* c1, Collider* c2)
 	}
 }
 
-bool j1Yellow_Fruit::Load(pugi::xml_node&)
+bool j1Bomb::Load(pugi::xml_node&)
 {
 	return true;
 }
-bool j1Yellow_Fruit::Save(pugi::xml_node&) const
+bool j1Bomb::Save(pugi::xml_node&) const
 {
 	return true;
 }

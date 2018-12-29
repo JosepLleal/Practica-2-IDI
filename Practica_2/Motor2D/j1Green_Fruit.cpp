@@ -2,16 +2,16 @@
 #include "j1Collision.h"
 #include "j1Scene.h"
 #include "j1Map.h"
-#include "j1Yellow_Fruit.h"
+#include "j1Green_Fruit.h"
 #include "j1Scene.h"
 #include "j1Input.h"
 
-j1Yellow_Fruit::j1Yellow_Fruit(int x, int y, EntityType Type) : j1Entity(x, y, Type)
+j1Green_Fruit::j1Green_Fruit(int x, int y, EntityType Type) : j1Entity(x, y, Type)
 {
 	current_animation = NULL;
 
-	idle.LoadAnimations("yellow_fruit", "idle");
-	dead.LoadAnimations("yellow_fruit", "dead");
+	idle.LoadAnimations("green_fruit", "idle");
+	dead.LoadAnimations("green_fruit", "dead");
 	position.x = x;
 	position.y = y;
 
@@ -21,9 +21,9 @@ j1Yellow_Fruit::j1Yellow_Fruit(int x, int y, EntityType Type) : j1Entity(x, y, T
 	start_pos.y = y;
 }
 
-j1Yellow_Fruit::~j1Yellow_Fruit() {}
+j1Green_Fruit::~j1Green_Fruit() {}
 
-bool j1Yellow_Fruit::Start()
+bool j1Green_Fruit::Start()
 {
 	if (graphics == nullptr)
 	{
@@ -43,7 +43,7 @@ bool j1Yellow_Fruit::Start()
 	return true;
 }
 
-bool j1Yellow_Fruit::Update(float dt, bool do_logic)
+bool j1Green_Fruit::Update(float dt, bool do_logic)
 {
 
 	dt_fruit = dt;
@@ -53,7 +53,7 @@ bool j1Yellow_Fruit::Update(float dt, bool do_logic)
 	return true;
 }
 
-bool j1Yellow_Fruit::PostUpdate()
+bool j1Green_Fruit::PostUpdate()
 {
 	Draw();
 	if (dead.Finished())
@@ -63,7 +63,7 @@ bool j1Yellow_Fruit::PostUpdate()
 	return true;
 }
 
-bool j1Yellow_Fruit::CleanUp()
+bool j1Green_Fruit::CleanUp()
 {
 	App->tex->UnLoad(graphics);
 	graphics = nullptr;
@@ -76,13 +76,13 @@ bool j1Yellow_Fruit::CleanUp()
 	return true;
 }
 
-void j1Yellow_Fruit::Draw()
+void j1Green_Fruit::Draw()
 {
 	SDL_Rect rect = current_animation->GetCurrentFrame(dt_fruit);
 	App->render->Blit(graphics, (int)position.x, (int)position.y, &rect, SDL_FLIP_NONE);
 }
 
-void j1Yellow_Fruit::OnCollision(Collider* c1, Collider* c2)
+void j1Green_Fruit::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c2->type == COLLIDER_PLAYER)
 	{
@@ -98,11 +98,11 @@ void j1Yellow_Fruit::OnCollision(Collider* c1, Collider* c2)
 	}
 }
 
-bool j1Yellow_Fruit::Load(pugi::xml_node&)
+bool j1Green_Fruit::Load(pugi::xml_node&)
 {
 	return true;
 }
-bool j1Yellow_Fruit::Save(pugi::xml_node&) const
+bool j1Green_Fruit::Save(pugi::xml_node&) const
 {
 	return true;
 }

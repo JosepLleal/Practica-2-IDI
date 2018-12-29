@@ -418,6 +418,10 @@ void j1Scene::RespawnEntities()
 	{
 		App->entityManager->CreateEntity(500, 300, RED_FRUIT);
 		App->entityManager->CreateEntity(300, 500, YELLOW_FRUIT);
+		App->entityManager->CreateEntity(600, 400, BLUE_FRUIT);
+		App->entityManager->CreateEntity(300, 200, GREEN_FRUIT);
+		App->entityManager->CreateEntity(800, 500, PURPLE_FRUIT);
+		App->entityManager->CreateEntity(400, 400, BOMB);
 		App->entityManager->AddPlayer();
 		
 	}

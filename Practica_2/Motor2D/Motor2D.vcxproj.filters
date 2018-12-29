@@ -82,6 +82,18 @@
     <ClCompile Include="j1Yellow_Fruit.cpp">
       <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
     </ClCompile>
+    <ClCompile Include="j1Blue_Fruit.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Green_Fruit.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Purple_Fruit.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Bomb.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -184,6 +196,18 @@
       <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
     </ClInclude>
     <ClInclude Include="j1Yellow_Fruit.h">
+      <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Blue_Fruit.h">
+      <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Green_Fruit.h">
+      <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Purple_Fruit.h">
+      <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Bomb.h">
       <Filter>Desenvolupament  ========\Modules\Entities\Fruits</Filter>
     </ClInclude>
   </ItemGroup>

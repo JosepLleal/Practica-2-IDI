@@ -45,8 +45,6 @@ bool j1Red_Fruit::Start()
 
 bool j1Red_Fruit::Update(float dt, bool do_logic)
 {
-	BROFILER_CATEGORY("Bat Update", Profiler::Color::Green);
-
 	dt_fruit = dt;
 	collider->SetPos(position.x , position.y );
 
