@@ -34,7 +34,7 @@ bool j1Blue_Fruit::Start()
 		collider = App->collision->AddCollider({ (int)position.x, (int)position.y, 65, 65 }, COLLIDER_FRUIT, App->entityManager);
 	}
 
-	fruit_fx = App->audio->LoadFx("audio/fx/get_coin.wav");
+	fruit_fx = App->audio->LoadFx("audio/fx/squashing.wav");
 
 	position.x = start_pos.x;
 	position.y = start_pos.y;

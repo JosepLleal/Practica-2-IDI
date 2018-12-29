@@ -34,7 +34,7 @@ bool j1Bomb::Start()
 		collider = App->collision->AddCollider({ (int)position.x, (int)position.y, 65, 65 }, COLLIDER_FRUIT, App->entityManager);
 	}
 
-	bomb_fx = App->audio->LoadFx("audio/fx/get_coin.wav");
+	bomb_fx = App->audio->LoadFx("audio/fx/squashing2.wav");
 
 	position.x = start_pos.x;
 	position.y = start_pos.y;

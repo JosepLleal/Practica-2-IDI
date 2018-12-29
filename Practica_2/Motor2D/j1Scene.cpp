@@ -385,7 +385,7 @@ void j1Scene::Level_Load(uint number)
 	// From main menu to the level 1 
 	if (actual_level == 0 && level_to_load->data->lvl == 1)
 	{
-		App->audio->PlayMusic("audio/music/Galway.ogg");
+		App->audio->PlayMusic("audio/music/ingame.ogg");
 		App->gui->Delete_UI_Elements();
 		App->map->Load(level_to_load->data->mapPath.GetString());
 		RespawnEntities();

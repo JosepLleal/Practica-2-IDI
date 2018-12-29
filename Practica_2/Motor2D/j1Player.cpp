@@ -32,7 +32,7 @@ bool j1Player::Start()
 		collider = App->collision->AddCollider({ (int)position.x, (int)position.y, 28, 26 }, COLLIDER_PLAYER, App->entityManager);
 	}
 
-	player_fx = App->audio->LoadFx("audio/fx/get_coin.wav");
+	player_fx = App->audio->LoadFx("audio/fx/squashing.wav");
 
 	position.x = start_pos.x;
 	position.y = start_pos.y;
