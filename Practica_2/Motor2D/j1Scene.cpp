@@ -10,11 +10,11 @@
 #include "j1Audio.h"
 #include "j1Collision.h"
 #include "j1Fadetoblack.h"
-#include "j1EntityManager.h"
 #include "j1Player.h"
 #include "j1Fonts.h"
 #include "j1Gui.h"
 #include "j1Gui_Elements.h"
+#include <time.h>
 
 
 j1Scene::j1Scene() : j1Module()
@@ -59,6 +59,8 @@ bool j1Scene::Start()
 	App->audio->SetMusicVolume();
 	App->audio->SetSfxVolume();
 	App->audio->PlayMusic("audio/music/main_menu.ogg");
+
+	srand(time(NULL));
 
 	return true;
 }
@@ -411,20 +413,40 @@ void j1Scene::Level_Load(uint number)
 
 }
 
+EntityType j1Scene::RandomEntity()
+{
+	EntityType type;
+
+	int val1 = rand() % (5 + 1);
+	
+	if (val1 == 0)
+		type = RED_FRUIT;
+	else if (val1 == 1)
+		type = YELLOW_FRUIT;
+	else if (val1 == 2)
+		type = BLUE_FRUIT;
+	else if (val1 == 3)
+		type = GREEN_FRUIT;
+	else if (val1 == 4)
+		type = PURPLE_FRUIT;
+	else if (val1 == 5)
+		type = BOMB;
+
+	return type;
+}
+
 
 void j1Scene::RespawnEntities()
 {
-	if (level_to_load->data->lvl == 1)
-	{
-		App->entityManager->CreateEntity(500, 768, RED_FRUIT, -30, 4);
-		App->entityManager->CreateEntity(300, 768, YELLOW_FRUIT, -35, 5);
-		App->entityManager->CreateEntity(600, 768, BLUE_FRUIT, -25, 2);
-		App->entityManager->CreateEntity(300, 768, GREEN_FRUIT, -28, 0);
-		App->entityManager->CreateEntity(800, 768, PURPLE_FRUIT, -40, -10);
-		App->entityManager->CreateEntity(400, 768, BOMB, -40, 0);
-		App->entityManager->AddPlayer();
+	
+	App->entityManager->CreateEntity(500, 768, RandomEntity(), -30, 4);
+	App->entityManager->CreateEntity(300, 768, RandomEntity(), -35, 5);
+	App->entityManager->CreateEntity(600, 768, RandomEntity(), -25, 2);
+	App->entityManager->CreateEntity(300, 768, RandomEntity(), -28, 0);
+	App->entityManager->CreateEntity(800, 768, RandomEntity(), -40, -10);
+	App->entityManager->CreateEntity(400, 768, RandomEntity(), -40, 0);
+	App->entityManager->AddPlayer();
 		
-	}
 }
 
 void j1Scene::Create_UI_Elements()

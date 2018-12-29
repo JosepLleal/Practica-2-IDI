@@ -3,6 +3,7 @@
 
 #include "j1Module.h"
 #include "Animation.h"
+#include "j1EntityManager.h"
 #include "j1Gui.h"
 
 struct SDL_Texture;
@@ -52,6 +53,7 @@ public:
 	void Create_UI_Elements();
 
 	void HideCursor(bool hide);
+	EntityType RandomEntity();
 
 public:
 
