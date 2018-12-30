@@ -31,7 +31,6 @@ public:
 	float dt_player;
 	bool added = false;
 	uint player_fx;
-	int lifes = 5;
 
 private:
 

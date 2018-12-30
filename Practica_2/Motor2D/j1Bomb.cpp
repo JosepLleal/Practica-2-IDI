@@ -109,6 +109,7 @@ void j1Bomb::OnCollision(Collider* c1, Collider* c2)
 		{
 			App->audio->PlayFx(bomb_fx);
 			current_animation = &dead;
+			App->scene->lifes--;
 
 			//score + x
 			//fruits destroyed + 1

@@ -78,6 +78,7 @@ bool j1Red_Fruit::PostUpdate()
 	{
 		App->audio->PlayFx(fall_fx);
 		App->entityManager->DestroyThisEntity(this);
+		App->scene->lifes--;
 	}
 	return true;
 }

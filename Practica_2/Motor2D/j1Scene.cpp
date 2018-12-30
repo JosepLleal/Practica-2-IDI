@@ -267,6 +267,11 @@ bool j1Scene::Update(float dt)
 		App->caped_frames = !App->caped_frames;
 	}
 
+	if (lifes == 0)
+	{
+		App->fade->FadeToBlack(this, this, 1.3f);
+		loading_menu = true;
+	}
 	
 	
 
@@ -336,7 +341,62 @@ bool j1Scene::Update(float dt)
 		{
 			RespawnEntities(6);
 		}
-
+		else if (timer.Read() > 24000 && timer.Read() < 24050)
+		{
+			RespawnEntities(7);
+		}
+		else if (timer.Read() > 28000 && timer.Read() < 28050)
+		{
+			RespawnEntities(8);
+		}
+		else if (timer.Read() > 31500 && timer.Read() < 31550)
+		{
+			RespawnEntities(9);
+		}
+		else if (timer.Read() > 34000 && timer.Read() < 34050)
+		{
+			RespawnEntities(10);
+		}
+		else if (timer.Read() > 37000 && timer.Read() < 37050)
+		{
+			RespawnEntities(11);
+		}
+		else if (timer.Read() > 40000 && timer.Read() < 40050)
+		{
+			RespawnEntities(12);
+		}
+		else if (timer.Read() > 42500 && timer.Read() < 42550)
+		{
+			RespawnEntities(13);
+		}
+		else if (timer.Read() > 45500 && timer.Read() < 45550)
+		{
+			RespawnEntities(14);
+		}
+		else if (timer.Read() > 48000 && timer.Read() < 48050)
+		{
+			RespawnEntities(15);
+		}
+		else if (timer.Read() > 51000 && timer.Read() < 51050)
+		{
+			RespawnEntities(16);
+		}
+		else if (timer.Read() > 53500 && timer.Read() < 53550)
+		{
+			RespawnEntities(17);
+		}
+		else if (timer.Read() > 56000 && timer.Read() < 56050)
+		{
+			RespawnEntities(18);
+		}
+		else if (timer.Read() > 59000 && timer.Read() < 59050)
+		{
+			RespawnEntities(19);
+		}
+		else if (timer.Read() > 62000 && timer.Read() < 62050)
+		{
+			RespawnEntities(20);
+		}
 	}
 
 	
@@ -440,6 +500,7 @@ void j1Scene::Level_Load(uint number)
 		App->map->Load(level_to_load->data->mapPath.GetString());
 		Create_UI_Elements();
 		actual_level = level_to_load->data->lvl;
+		lifes = 3;
 	}
 
 
@@ -475,6 +536,7 @@ void j1Scene::RespawnEntities(int round)
 	{
 		App->entityManager->CreateEntity(500, 768, RandomEntity(), -30, 4);
 		App->entityManager->CreateEntity(300, 768, RandomEntity(), -35, 5);
+		
 	}
 	else if (round == 2)
 	{
@@ -507,19 +569,135 @@ void j1Scene::RespawnEntities(int round)
 		App->entityManager->CreateEntity(500, 768, RandomEntity(), -25, 0);
 		App->entityManager->CreateEntity(800, 768, BOMB, -30, 0);
 	}
-	else
+	else if (round == 7)
 	{
-		App->entityManager->CreateEntity(500, 768, RandomEntity(), -30, 4);
-		App->entityManager->CreateEntity(300, 768, RandomEntity(), -35, 5);
-		App->entityManager->CreateEntity(600, 768, RandomEntity(), -25, 2);
-		App->entityManager->CreateEntity(300, 768, RandomEntity(), -28, 0);
-		App->entityManager->CreateEntity(800, 768, RandomEntity(), -40, -10);
-		App->entityManager->CreateEntity(400, 768, RandomEntity(), -40, 0);
+		App->entityManager->CreateEntity(200, 768, BOMB, -27, 6);
+		App->entityManager->CreateEntity(375, 768, BOMB, -30, 3);
+		App->entityManager->CreateEntity(500, 768, RandomEntity(), -30, -2);
+		App->entityManager->CreateEntity(650, 768, RandomEntity(), -26, -3);
+		App->entityManager->CreateEntity(750, 768, RandomEntity(), -29, -4);
 	}
+	else if (round == 8)
+	{
+		App->entityManager->CreateEntity(100, 768, RandomEntity(), -31, 2);
+		App->entityManager->CreateEntity(300, 768, RandomEntity(), -27, 3);
+		App->entityManager->CreateEntity(500, 768, RandomEntity(), -33, -6);
+		App->entityManager->CreateEntity(950, 768, RandomEntity(), -30, -4);
+	}
+	else if (round == 9)
+	{
+		App->entityManager->CreateEntity(100, 768, RandomEntity(), -35, 0);
+		App->entityManager->CreateEntity(250, 768, RandomEntity(), -30, 4);
+		App->entityManager->CreateEntity(400, 768, BOMB, -28, 3);
+		App->entityManager->CreateEntity(700, 768, RandomEntity(), -26, -2);
+		App->entityManager->CreateEntity(775, 768, BOMB, -30, 0);
+	}
+	else if (round == 10)
+	{
+		App->entityManager->CreateEntity(100, 768, RandomEntity(), -35, 4);
+		App->entityManager->CreateEntity(250, 768, RandomEntity(), -28, 0);
+		App->entityManager->CreateEntity(350, 768, RandomEntity(), -31, 5);
+		App->entityManager->CreateEntity(400, 768, BOMB, -30, 10);
+		App->entityManager->CreateEntity(550, 768, RandomEntity(), -27, -2);
+		App->entityManager->CreateEntity(600, 768, BOMB, -27, 0);
+		
+	}
+	else if (round == 11)
+	{
+		App->entityManager->CreateEntity(200, 768, BOMB, -28, 6);
+		App->entityManager->CreateEntity(350, 768, BOMB, -30, 4);
+		App->entityManager->CreateEntity(500, 768, RandomEntity(), -25, 2);
+		App->entityManager->CreateEntity(800, 768, BOMB, -32, -9);
+	}
+	else if (round == 12)
+	{
+		App->entityManager->CreateEntity(300, 768, BOMB, -32, 10);	
+		App->entityManager->CreateEntity(400, 768, RandomEntity(), -27, 10);
+		App->entityManager->CreateEntity(400, 768, BOMB, -34, 10);
+	}
+	else if (round == 13)
+	{
+		App->entityManager->CreateEntity(500, 768, RandomEntity(), -35, -5);
+		App->entityManager->CreateEntity(550, 768, RandomEntity(), -25, -2);
+	}
+	else if (round == 14)
+	{
+		App->entityManager->CreateEntity(100, 768, RandomEntity(), -35, 0);
+		App->entityManager->CreateEntity(250, 768, BOMB, -30, 8);
+		App->entityManager->CreateEntity(450, 768, RandomEntity(), -28, 7);
+		App->entityManager->CreateEntity(500, 768, BOMB, -35, 4);
+		App->entityManager->CreateEntity(650, 768, RandomEntity(), -32, -5);
+		App->entityManager->CreateEntity(850, 768, RandomEntity(), -28, -7);
+	}
+	else if (round == 15)
+	{
+		App->entityManager->CreateEntity(100, 768, BOMB, -29, 10);
+		App->entityManager->CreateEntity(250, 768, BOMB, -30, 7);
+		App->entityManager->CreateEntity(450, 768, RandomEntity(), -28, 8);
+		App->entityManager->CreateEntity(500, 768, BOMB, -35, 4);
+		App->entityManager->CreateEntity(650, 768, RandomEntity(), -32, -3);
+		App->entityManager->CreateEntity(850, 768, BOMB, -28, -7);
+		App->entityManager->CreateEntity(900, 768, RandomEntity(), -32, -9);
+	}
+	else if (round == 16)
+	{
+		App->entityManager->CreateEntity(100, 768, RandomEntity(), -40, 12);
+		App->entityManager->CreateEntity(250, 768, RandomEntity(), -34, 8);
+		App->entityManager->CreateEntity(600, 768, RandomEntity(), -40, -12);
+		App->entityManager->CreateEntity(800, 768, RandomEntity(), -37, -10);
+	}
+	else if (round == 17)
+	{
+		App->entityManager->CreateEntity(50, 768, BOMB, -36, 17);
+		App->entityManager->CreateEntity(100, 768, RandomEntity(), -40, 15);
+		App->entityManager->CreateEntity(250, 768, RandomEntity(), -34, 10);
+		App->entityManager->CreateEntity(575, 768, BOMB, -32, 1);
+		App->entityManager->CreateEntity(850, 768, BOMB, -32, -10);
+		App->entityManager->CreateEntity(950, 768, RandomEntity(), -37, -16);
+	}
+	else if (round == 18)
+	{
+		App->entityManager->CreateEntity(50, 768, BOMB, -36, 17);
+		App->entityManager->CreateEntity(100, 768, RED_FRUIT, -25, 9);
+		App->entityManager->CreateEntity(300, 768, YELLOW_FRUIT, -27, 0);
+		App->entityManager->CreateEntity(350, 768, GREEN_FRUIT, -23, 15);
+		App->entityManager->CreateEntity(400, 768, BOMB, -25, 4);
+		App->entityManager->CreateEntity(500, 768, PURPLE_FRUIT, -27, 9);
+		App->entityManager->CreateEntity(575, 768, BOMB, -40, -3);
+		App->entityManager->CreateEntity(650, 768, BLUE_FRUIT, -29, -6);
+		App->entityManager->CreateEntity(700, 768, BOMB, -28, -11);
+		App->entityManager->CreateEntity(850, 768, BOMB, -32, -14);
+	}
+	else if (round == 19)
+	{
+		App->entityManager->CreateEntity(50, 768, RandomEntity(), -33, 0);
+		App->entityManager->CreateEntity(100, 768, BOMB, -28, 0);
+		App->entityManager->CreateEntity(300, 768, RandomEntity(), -27, 0);
+		App->entityManager->CreateEntity(350, 768, BOMB, -23, 0);
+		App->entityManager->CreateEntity(400, 768, RandomEntity(), -25, 0);
+		App->entityManager->CreateEntity(500, 768, RandomEntity(), -27, 0);
+		App->entityManager->CreateEntity(575, 768, BOMB, -40, 0);
+		App->entityManager->CreateEntity(650, 768, RandomEntity(), -29, 0);
+		App->entityManager->CreateEntity(700, 768, BOMB, -28, 0);
+		App->entityManager->CreateEntity(850, 768, RandomEntity(), -32, 0);
+	}
+	else if (round == 20)
+	{
+		App->entityManager->CreateEntity(50, 768, RandomEntity(), -36, 17);
+		App->entityManager->CreateEntity(100, 768, RandomEntity(), -25, 9);
+		App->entityManager->CreateEntity(300, 768, RandomEntity(), -27, 0);
+		App->entityManager->CreateEntity(350, 768, BOMB, -23, 15);
+		App->entityManager->CreateEntity(400, 768, RandomEntity(), -25, 4);
+		App->entityManager->CreateEntity(500, 768, RandomEntity(), -27, 9);
+		App->entityManager->CreateEntity(575, 768, BOMB, -40, -3);
+		App->entityManager->CreateEntity(650, 768, RandomEntity(), -29, -6);
+		App->entityManager->CreateEntity(700, 768, RandomEntity(), -28, -11);
+		App->entityManager->CreateEntity(850, 768, RandomEntity(), -32, -14);
+	}
+
 
 	App->entityManager->Start();
 
-		
 }
 
 void j1Scene::Create_UI_Elements()

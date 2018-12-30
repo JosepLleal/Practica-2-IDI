@@ -74,9 +74,10 @@ public:
 	bool saved_game = false;
 	bool loading_saved_game = false;
 
+	uint lifes = 3;
+
 	Gui_Elements* Settings_Menu = nullptr;
 
-	
 
 private:
 
