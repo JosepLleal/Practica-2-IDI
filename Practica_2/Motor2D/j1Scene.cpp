@@ -747,24 +747,18 @@ void j1Scene::RespawnEntities(int round)
 		App->entityManager->CreateEntity(100, 768, RED_FRUIT, -25, 9);
 		App->entityManager->CreateEntity(300, 768, YELLOW_FRUIT, -27, 0);
 		App->entityManager->CreateEntity(350, 768, GREEN_FRUIT, -23, 15);
-		App->entityManager->CreateEntity(400, 768, BOMB, -25, 4);
-		App->entityManager->CreateEntity(500, 768, PURPLE_FRUIT, -27, 9);
 		App->entityManager->CreateEntity(575, 768, BOMB, -40, -3);
 		App->entityManager->CreateEntity(650, 768, BLUE_FRUIT, -29, -6);
-		App->entityManager->CreateEntity(700, 768, BOMB, -28, -11);
 		App->entityManager->CreateEntity(850, 768, BOMB, -32, -14);
 	}
 	else if (round == 19)
 	{
 		App->entityManager->CreateEntity(50, 768, RandomEntity(), -33, 0);
 		App->entityManager->CreateEntity(100, 768, BOMB, -28, 0);
-		App->entityManager->CreateEntity(300, 768, RandomEntity(), -27, 0);
 		App->entityManager->CreateEntity(350, 768, BOMB, -23, 0);
 		App->entityManager->CreateEntity(400, 768, RandomEntity(), -25, 0);
 		App->entityManager->CreateEntity(500, 768, RandomEntity(), -27, 0);
-		App->entityManager->CreateEntity(575, 768, BOMB, -40, 0);
 		App->entityManager->CreateEntity(650, 768, RandomEntity(), -29, 0);
-		App->entityManager->CreateEntity(700, 768, BOMB, -28, 0);
 		App->entityManager->CreateEntity(850, 768, RandomEntity(), -32, 0);
 	}
 	else if (round == 20)
@@ -772,12 +766,8 @@ void j1Scene::RespawnEntities(int round)
 		App->entityManager->CreateEntity(50, 768, RandomEntity(), -36, 17);
 		App->entityManager->CreateEntity(100, 768, RandomEntity(), -25, 9);
 		App->entityManager->CreateEntity(300, 768, RandomEntity(), -27, 0);
-		App->entityManager->CreateEntity(350, 768, BOMB, -23, 15);
 		App->entityManager->CreateEntity(400, 768, RandomEntity(), -25, 4);
 		App->entityManager->CreateEntity(500, 768, RandomEntity(), -27, 9);
-		App->entityManager->CreateEntity(575, 768, BOMB, -40, -3);
-		App->entityManager->CreateEntity(650, 768, RandomEntity(), -29, -6);
-		App->entityManager->CreateEntity(700, 768, RandomEntity(), -28, -11);
 		App->entityManager->CreateEntity(850, 768, RandomEntity(), -32, -14);
 	}
 
