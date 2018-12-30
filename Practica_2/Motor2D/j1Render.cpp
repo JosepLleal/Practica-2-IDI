@@ -108,6 +108,7 @@ bool j1Render::Save(pugi::xml_node& data) const
 	data.append_child("Wins").append_attribute("value") = App->scene->wins_mode2;
 	data.append_child("Loses").append_attribute("value") = App->scene->loses_mode2;
 	data.append_child("Fruits_Cut").append_attribute("value") = App->scene->fruits_cut_mode2;
+	data.append_child("Fallen_Fruits").append_attribute("value") = App->scene->fallen_fruits_mode2;
 	data.append_child("Bombs_Triggered").append_attribute("value") = App->scene->bombs_triggered_mode2;
 
 	return true;

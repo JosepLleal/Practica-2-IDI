@@ -1,18 +1,19 @@
 <?xml version="1.0"?>
 <Game>
 	<Drag_mode>
-		<Games_Played value="1" />
-		<Wins value="0" />
-		<Loses value="1" />
-		<Fruits_Cut value="54" />
-		<Fallen_Fruits value="2" />
-		<Bombs_Triggered value="1" />
-	</Drag_mode>
-	<Click_mode>
 		<Games_Played value="0" />
 		<Wins value="0" />
 		<Loses value="0" />
 		<Fruits_Cut value="0" />
+		<Fallen_Fruits value="0" />
+		<Bombs_Triggered value="0" />
+	</Drag_mode>
+	<Click_mode>
+		<Games_Played value="1" />
+		<Wins value="0" />
+		<Loses value="1" />
+		<Fruits_Cut value="22" />
+		<Fallen_Fruits value="3" />
 		<Bombs_Triggered value="0" />
 	</Click_mode>
 </Game>
