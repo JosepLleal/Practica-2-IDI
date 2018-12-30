@@ -457,23 +457,20 @@ bool j1App::SavegameNow() const
 	pugi::xml_document data;
 	pugi::xml_node root;
 	
-	root = data.append_child("game_state");
+	root = data.append_child("Game");
 
-	p2List_item<j1Module*>* item = modules.start;
 
-	while(item != NULL && ret == true)
-	{
-		ret = item->data->Save(root.append_child(item->data->name.GetString()));
-		item = item->next;
-	}
+	ret = entityManager->Save(root.append_child("Drag_mode"));
+	ret = render->Save(root.append_child("Click_mode"));
+	
 
 	if(ret == true)
 	{
-		data.save_file(save_game.GetString());
+			data.save_file(save_game.GetString());
 		LOG("... finished saving", );
 	}
 	else
-		LOG("Save process halted from an error in module %s", (item != NULL) ? item->data->name.GetString() : "unknown");
+		LOG("Save process halted from an error in module %s", (entityManager != NULL) ? entityManager->name.GetString() : "unknown");
 
 	data.reset();
 	want_to_save = false;

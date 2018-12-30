@@ -3,6 +3,7 @@
 #include "j1App.h"
 #include "j1Window.h"
 #include "j1Render.h"
+#include "j1Scene.h"
 
 #define VSYNC true
 
@@ -96,8 +97,6 @@ bool j1Render::CleanUp()
 // Load Game State
 bool j1Render::Load(pugi::xml_node& data)
 {
-	camera.x = data.child("camera").attribute("x").as_int();
-	camera.y = data.child("camera").attribute("y").as_int();
 
 	return true;
 }
@@ -105,10 +104,11 @@ bool j1Render::Load(pugi::xml_node& data)
 // Save Game State
 bool j1Render::Save(pugi::xml_node& data) const
 {
-	pugi::xml_node cam = data.append_child("camera");
-
-	cam.append_attribute("x") = camera.x;
-	cam.append_attribute("y") = camera.y;
+	data.append_child("Games_Played").append_attribute("value") = App->scene->games_played_mode2;
+	data.append_child("Wins").append_attribute("value") = App->scene->wins_mode2;
+	data.append_child("Loses").append_attribute("value") = App->scene->loses_mode2;
+	data.append_child("Fruits_Cut").append_attribute("value") = App->scene->fruits_cut_mode2;
+	data.append_child("Bombs_Triggered").append_attribute("value") = App->scene->bombs_triggered_mode2;
 
 	return true;
 }

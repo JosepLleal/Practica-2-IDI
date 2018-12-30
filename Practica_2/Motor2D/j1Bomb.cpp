@@ -116,6 +116,7 @@ void j1Bomb::OnCollision(Collider* c1, Collider* c2)
 				current_animation = &dead;
 				App->scene->lifes--;
 				App->scene->score -= 10;
+				App->scene->bombs_triggered_mode1++;
 
 			}
 		}
@@ -127,6 +128,7 @@ void j1Bomb::OnCollision(Collider* c1, Collider* c2)
 				current_animation = &dead;
 				App->scene->lifes--;
 				App->scene->score -= 10;
+				App->scene->bombs_triggered_mode2++;
 
 			}
 		}

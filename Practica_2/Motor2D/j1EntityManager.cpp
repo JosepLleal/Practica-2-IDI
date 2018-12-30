@@ -143,11 +143,15 @@ void j1EntityManager::DestroyAllEntities()
 {
 	for (p2List_item<j1Entity*>* iterator = entities.start; iterator != nullptr; iterator = iterator->next) 
 	{
-		iterator->data->CleanUp();
-		entities.del(iterator);
-		RELEASE(iterator->data);
+		if (iterator->data != player)
+		{
+			iterator->data->CleanUp();
+			entities.del(iterator);
+			RELEASE(iterator->data);
 
-		LOG("deleting entity");
+			LOG("deleting entity");
+		}
+		
 	}
 
 }
@@ -178,14 +182,8 @@ bool j1EntityManager::Load(pugi::xml_node& data)
 
 bool j1EntityManager::Save(pugi::xml_node& data) const
 {
-	/*pugi::xml_node entities_node = data.append_child("entities");
 	
-	for (p2List_item<j1Entity*>* entity = entities.start; entity; entity = entity->next)
-	{
-		pugi::xml_node child = entities_node.append_child("entity");
+	player->Save(data);
 
-		child.append_attribute("position_x") = entity->data->position.x;
-		child.append_attribute("position_y") = entity->data->position.y;
-	}*/
 	return true;
 }

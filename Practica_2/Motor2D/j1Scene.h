@@ -82,6 +82,21 @@ public:
 	Gui_Elements* Settings_Menu = nullptr;
 
 
+	int games_played_mode1;
+	int wins_mode1;
+	int loses_mode1;
+	int fruits_cut_mode1;
+	int fallen_fruits_mode1;
+	int bombs_triggered_mode1;
+
+	int games_played_mode2;
+	int wins_mode2;
+	int loses_mode2;
+	int fruits_cut_mode2;
+	int fallen_fruits_mode2;
+	int bombs_triggered_mode2;
+
+
 private:
 
 	j1Timer timer;

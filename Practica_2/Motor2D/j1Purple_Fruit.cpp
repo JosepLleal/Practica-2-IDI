@@ -87,6 +87,10 @@ bool j1Purple_Fruit::PostUpdate()
 		App->audio->PlayFx(fall_fx);
 		App->entityManager->DestroyThisEntity(this);
 		App->scene->lifes--;
+		if (App->scene->mode1)
+			App->scene->fallen_fruits_mode1++;
+		else if (App->scene->mode2)
+			App->scene->fallen_fruits_mode2++;
 	}
 	return true;
 }
@@ -121,7 +125,7 @@ void j1Purple_Fruit::OnCollision(Collider* c1, Collider* c2)
 				App->audio->PlayFx(fruit_fx);
 				current_animation = &dead;
 				App->scene->score += 2;
-
+				App->scene->fruits_cut_mode1++;
 
 			}
 		}
@@ -132,10 +136,11 @@ void j1Purple_Fruit::OnCollision(Collider* c1, Collider* c2)
 				App->audio->PlayFx(fruit_fx);
 				current_animation = &dead;
 				App->scene->score += 2;
-
+				App->scene->fruits_cut_mode2++;
 
 			}
 		}
+
 	}
 }
 

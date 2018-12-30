@@ -21,7 +21,7 @@ public:
 	void OnCollision(Collider* c1, Collider* c2);
 
 	bool Load(pugi::xml_node&);
-	bool Save(pugi::xml_node&) const;
+	bool Save(pugi::xml_node& data) const;
 
 	void Draw();
 
@@ -31,6 +31,7 @@ public:
 	float dt_player;
 	bool added = false;
 	uint player_fx;
+
 
 private:
 

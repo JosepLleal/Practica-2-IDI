@@ -64,6 +64,8 @@ bool j1Scene::Start()
 
 	lifes = 3;
 
+
+
 	return true;
 }
 
@@ -94,13 +96,21 @@ bool j1Scene::Update(float dt)
 			{
 				App->fade->FadeToBlack(this, this, 1.3f);
 				loading_lvl1 = true;
-				mode1 = true;
+				if(!mode1)
+					mode1 = true;
+				if (mode2)
+					mode2 = false;
 			}
 			else if (iterator->data->funct == Function::PLAY2)
 			{
 				App->fade->FadeToBlack(this, this, 1.3f);
 				loading_lvl1 = true;
-				mode2 = true;
+				
+
+				if (!mode2)
+					mode2 = true;
+				if (mode1)
+					mode1 = false;
 			}
 			else if (iterator->data->funct == Function::SETTINGS )
 			{
@@ -401,12 +411,12 @@ bool j1Scene::Update(float dt)
 			{
 				RespawnEntities(20);
 			}
-			else if (timer.Read() > 65000 && timer.Read() < 65050)
+			else if (timer.Read() > 68000 && timer.Read() < 68050)
 			{
 				App->gui->Create_Label(Element_type::LABEL, { 250, 300 }, true, true, " CONGRATULATIONS", { 255,255,255,0 }, App->font->bigger, nullptr);
 				App->gui->Create_Label(Element_type::LABEL, { 250, 400 }, true, true, "LEVEL COMPLETED!!", { 255,255,255,0 }, App->font->bigger, nullptr);
 			}
-			else if (timer.Read() > 67000 && timer.Read() < 67050)
+			else if (timer.Read() > 70000 && timer.Read() < 70050)
 			{
 				App->fade->FadeToBlack(this, this, 1.3f);
 				loading_menu = true;
@@ -537,6 +547,32 @@ void j1Scene::Level_Load(uint number)
 	// From level 1 to main menu
 	else if (actual_level == 1 && level_to_load->data->lvl == 0)
 	{
+		if (mode1)
+		{
+			games_played_mode1++;
+		}
+		else if (mode2)
+		{
+			games_played_mode2++;
+		}
+
+		if (lifes == 0)
+		{
+			if(mode1)
+				loses_mode1++;
+			if(mode2)
+				loses_mode2++;
+		}
+		else
+		{
+			if (mode1)
+				wins_mode1++;
+			if (mode2)
+				wins_mode2++;
+		}
+
+		App->SaveGame();
+
 		App->audio->PlayMusic("audio/music/main_menu.ogg");
 		App->entityManager->DestroyAllEntities();
 		Score = nullptr; 
@@ -549,11 +585,8 @@ void j1Scene::Level_Load(uint number)
 		lifes = 3;
 		score = 0;
 
-		if (mode1)
-			mode1 = false;
 		
-		if (mode2)
-			mode2 = false;
+				
 	}
 
 

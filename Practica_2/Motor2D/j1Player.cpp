@@ -83,7 +83,8 @@ bool j1Player::CleanUp()
 
 void j1Player::Draw()
 {
-	App->render->Blit(graphics, (int)position.x, (int)position.y, &rect, SDL_FLIP_NONE);
+	if(App->scene->actual_level==1)
+		App->render->Blit(graphics, (int)position.x, (int)position.y, &rect, SDL_FLIP_NONE);
 }
 
 void j1Player::OnCollision(Collider* c1, Collider* c2)
@@ -95,7 +96,15 @@ bool j1Player::Load(pugi::xml_node&)
 {
 	return true;
 }
-bool j1Player::Save(pugi::xml_node&) const
+bool j1Player::Save(pugi::xml_node& data) const
 {
+	data.append_child("Games_Played").append_attribute("value") = App->scene->games_played_mode1;
+	data.append_child("Wins").append_attribute("value") = App->scene->wins_mode1;
+	data.append_child("Loses").append_attribute("value") = App->scene->loses_mode1;
+	data.append_child("Fruits_Cut").append_attribute("value") = App->scene->fruits_cut_mode1;
+	data.append_child("Fallen_Fruits").append_attribute("value") = App->scene->fallen_fruits_mode1;
+	data.append_child("Bombs_Triggered").append_attribute("value") = App->scene->bombs_triggered_mode1;
+	
+
 	return true;
 }
