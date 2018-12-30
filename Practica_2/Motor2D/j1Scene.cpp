@@ -435,8 +435,27 @@ bool j1Scene::PostUpdate()
 
 	bool ret = true;
 
+	if (actual_level != 0 && !App->scene->pause)
+	{
+		if (loading_saved_game)
+			int_timer = timer.Read() + saved_timer;
+
+		else
+			int_timer = timer.Read();
+
+		paused_timer = int_timer;
+	}
+	else
+	{
+		int_timer = paused_timer;
+
+		timer.Start();
+		timer.DefineStartTime(-paused_timer);
+	}
+
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && App->fade->IsFading() == false)
 	{
+		timer.Stop();
 		if (actual_level != 0)
 		{
 			if (Menu->visible)
@@ -751,8 +770,8 @@ void j1Scene::Create_UI_Elements()
 		Gui_Elements* Exit = App->gui->Create_Button(Element_type::BUTTON, { 415, 580 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::EXIT, Main_Menu);
 
 	
-		App->gui->Create_Label(Element_type::LABEL, { 20, 6 }, true, true, "GAME MODE 1", { 255,255,255,0 }, App->font->default, Play);
-		App->gui->Create_Label(Element_type::LABEL, { 20, 6 }, true, true, "GAME MODE 2", { 255,255,255,0 }, App->font->default, Play2);
+		App->gui->Create_Label(Element_type::LABEL, { 25, 6 }, true, true, "DRAG MODE", { 255,255,255,0 }, App->font->default, Play);
+		App->gui->Create_Label(Element_type::LABEL, { 20, 6 }, true, true, "CLICK MODE", { 255,255,255,0 }, App->font->default, Play2);
 		App->gui->Create_Label(Element_type::LABEL, { 30, 6 }, true, true, "SETTINGS", { 255,255,255,0 }, App->font->default, MainMenu_Settings);
 		App->gui->Create_Label(Element_type::LABEL, { 40, 6 }, true, true, "CREDITS", { 255,255,255,0 }, App->font->default, Credits);
 		App->gui->Create_Label(Element_type::LABEL, { 60, 6 }, true, true, "EXIT", { 255,255,255,0 }, App->font->default, Exit);

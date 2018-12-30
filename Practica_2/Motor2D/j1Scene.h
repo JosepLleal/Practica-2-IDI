@@ -85,6 +85,10 @@ public:
 private:
 
 	j1Timer timer;
+	int int_timer = 0;
+	int saved_timer = 0;
+	int paused_timer = 0;
+
 
 	float dt_scene;
 	
