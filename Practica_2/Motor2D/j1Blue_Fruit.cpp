@@ -111,10 +111,8 @@ void j1Blue_Fruit::OnCollision(Collider* c1, Collider* c2)
 		{
 			App->audio->PlayFx(fruit_fx);
 			current_animation = &dead;
-
-			//score + x
+			App->scene->score++;
 			//fruits destroyed + 1
-
 		}
 	}
 }

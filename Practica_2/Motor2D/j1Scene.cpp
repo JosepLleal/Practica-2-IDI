@@ -229,8 +229,8 @@ bool j1Scene::Update(float dt)
 	Slider_Music_Value->ValuetoString(Slider_Music->Value_percentage, Slider_Music_Value->text);
 	Slider_FX_Value->ValuetoString(Slider_FX->Value_percentage, Slider_FX_Value->text);
 
-	if(Coins != nullptr)
-		//Coins->ValuetoString(App->entityManager->player->collected_coins, Coins->text);
+	if(Score != nullptr)
+		Score->ValuetoString(score, Score->text);
 
 	if (Timer != nullptr)
 		//Timer->SetHour(App->entityManager->player->timer); 
@@ -504,7 +504,7 @@ void j1Scene::Level_Load(uint number)
 	{
 		App->audio->PlayMusic("audio/music/main_menu.ogg");
 		App->entityManager->DestroyAllEntities();
-		Coins = nullptr; 
+		Score = nullptr; 
 		Timer = nullptr; 
 		Score_num = nullptr;
 		App->gui->Delete_UI_Elements();
@@ -512,6 +512,7 @@ void j1Scene::Level_Load(uint number)
 		Create_UI_Elements();
 		actual_level = level_to_load->data->lvl;
 		lifes = 3;
+		score = 0;
 	}
 
 
@@ -764,19 +765,12 @@ void j1Scene::Create_UI_Elements()
 		if (level_to_load->data->lvl == 1 )
 		{
 			HideCursor(true);
-
-			if (lifes == 3)
-				App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1550, 139, 114, 57 }, true, true, false, App->gui->GetAtlas(), nullptr);
-			if (lifes == 2)
-				App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1550, 201, 114, 57 }, true, true, false, App->gui->GetAtlas(), nullptr);
-			if (lifes == 1)
-				App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1550, 260, 114, 57 }, true, true, false, App->gui->GetAtlas(), nullptr);
 			
 			Gui_Elements* Coin = App->gui->Create_Image(Element_type::IMAGE, {870, 18}, {648, 33, 56, 52}, true, true, false, App->gui->GetAtlas(), nullptr); 
-			Coins = App->gui->Create_Label(Element_type::LABEL, { 70, -18 }, true, true, "0", { 255, 255, 255, 0 }, App->font->bigger, Coin);
+			Score = App->gui->Create_Label(Element_type::LABEL, { 60, -18 }, true, true, score, { 255, 255, 255, 0 }, App->font->bigger, Coin);
 			
-			Gui_Elements* Score = App->gui->Create_Label(Element_type::LABEL, { 820, 720 }, true, true, "SCORE:", { 255, 255, 255, 0 }, App->font->default, nullptr);
-			Score_num = App->gui->Create_Label(Element_type::LABEL, {100, 0 }, true, true, "0", { 255, 255, 255, 0 }, App->font->default, Score);
+			/*Gui_Elements* Score = App->gui->Create_Label(Element_type::LABEL, { 820, 720 }, true, true, "SCORE:", { 255, 255, 255, 0 }, App->font->default, nullptr);
+			Score_num = App->gui->Create_Label(Element_type::LABEL, {100, 0 }, true, true, "0", { 255, 255, 255, 0 }, App->font->default, Score);*/
 		}
 
 		Menu = App->gui->Create_Image(Element_type::IMAGE, { 355, 200 }, { 8, 459, 315, 402 }, false, false, false, App->gui->GetAtlas());

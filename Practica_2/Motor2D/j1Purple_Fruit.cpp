@@ -115,8 +115,7 @@ void j1Purple_Fruit::OnCollision(Collider* c1, Collider* c2)
 		{
 			App->audio->PlayFx(fruit_fx);
 			current_animation = &dead;
-
-			//score + x
+			App->scene->score += 4;
 			//fruits destroyed + 1
 
 		}
