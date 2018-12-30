@@ -399,6 +399,18 @@ bool j1Scene::Update(float dt)
 		{
 			RespawnEntities(20);
 		}
+		else if (timer.Read() > 65000 && timer.Read() < 65050)
+		{
+			App->gui->Create_Label(Element_type::LABEL, { 250, 300 }, true, true, " CONGRATULATIONS", { 255,255,255,0 }, App->font->bigger, nullptr);
+			App->gui->Create_Label(Element_type::LABEL, { 250, 400 }, true, true, "LEVEL COMPLETED!!", { 255,255,255,0 }, App->font->bigger, nullptr);
+		}
+		else if (timer.Read() > 67000 && timer.Read() < 67050)
+		{
+			App->fade->FadeToBlack(this, this, 1.3f);
+			loading_menu = true;
+		}
+
+		
 	}
 
 	if (lifes != 0 && actual_level == 1)
