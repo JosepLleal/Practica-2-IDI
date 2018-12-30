@@ -315,103 +315,105 @@ bool j1Scene::Update(float dt)
 
 	App->input->GetMousePosition(Mouse_Pos.x, Mouse_Pos.y);
 
+
 	LOG("Timer: %i", timer.Read());
 
-	if (actual_level == 1)
+	if (actual_level == 1 && pause == false)
 	{
-		if (timer.Read() > 2000 && timer.Read() < 2050)
-		{
-			RespawnEntities(1);
-		}
-		else if (timer.Read() > 5000 && timer.Read() < 5050)
-		{
-			RespawnEntities(2);
-		}
-		else if (timer.Read() > 9000 && timer.Read() < 9025)
-		{
-			RespawnEntities(3);
-		}
-		else if (timer.Read() > 13000 && timer.Read() < 13050)
-		{
-			RespawnEntities(4);
-		}
-		else if (timer.Read() > 17000 && timer.Read() < 17050)
-		{
-			RespawnEntities(5);
-		}
-		else if (timer.Read() > 21000 && timer.Read() < 21050)
-		{
-			RespawnEntities(6);
-		}
-		else if (timer.Read() > 24000 && timer.Read() < 24050)
-		{
-			RespawnEntities(7);
-		}
-		else if (timer.Read() > 28000 && timer.Read() < 28050)
-		{
-			RespawnEntities(8);
-		}
-		else if (timer.Read() > 31500 && timer.Read() < 31550)
-		{
-			RespawnEntities(9);
-		}
-		else if (timer.Read() > 34000 && timer.Read() < 34050)
-		{
-			RespawnEntities(10);
-		}
-		else if (timer.Read() > 37000 && timer.Read() < 37050)
-		{
-			RespawnEntities(11);
-		}
-		else if (timer.Read() > 40000 && timer.Read() < 40050)
-		{
-			RespawnEntities(12);
-		}
-		else if (timer.Read() > 42500 && timer.Read() < 42550)
-		{
-			RespawnEntities(13);
-		}
-		else if (timer.Read() > 45500 && timer.Read() < 45550)
-		{
-			RespawnEntities(14);
-		}
-		else if (timer.Read() > 48000 && timer.Read() < 48050)
-		{
-			RespawnEntities(15);
-		}
-		else if (timer.Read() > 51000 && timer.Read() < 51050)
-		{
-			RespawnEntities(16);
-		}
-		else if (timer.Read() > 53500 && timer.Read() < 53550)
-		{
-			RespawnEntities(17);
-		}
-		else if (timer.Read() > 56000 && timer.Read() < 56050)
-		{
-			RespawnEntities(18);
-		}
-		else if (timer.Read() > 59000 && timer.Read() < 59050)
-		{
-			RespawnEntities(19);
-		}
-		else if (timer.Read() > 62000 && timer.Read() < 62050)
-		{
-			RespawnEntities(20);
-		}
-		else if (timer.Read() > 65000 && timer.Read() < 65050)
-		{
-			App->gui->Create_Label(Element_type::LABEL, { 250, 300 }, true, true, " CONGRATULATIONS", { 255,255,255,0 }, App->font->bigger, nullptr);
-			App->gui->Create_Label(Element_type::LABEL, { 250, 400 }, true, true, "LEVEL COMPLETED!!", { 255,255,255,0 }, App->font->bigger, nullptr);
-		}
-		else if (timer.Read() > 67000 && timer.Read() < 67050)
-		{
-			App->fade->FadeToBlack(this, this, 1.3f);
-			loading_menu = true;
-		}
-
 		
+			if (timer.Read() > 2000 && timer.Read() < 2050)
+			{
+				RespawnEntities(1);
+			}
+			else if (timer.Read() > 5000 && timer.Read() < 5050)
+			{
+				RespawnEntities(2);
+			}
+			else if (timer.Read() > 9000 && timer.Read() < 9025)
+			{
+				RespawnEntities(3);
+			}
+			else if (timer.Read() > 13000 && timer.Read() < 13050)
+			{
+				RespawnEntities(4);
+			}
+			else if (timer.Read() > 17000 && timer.Read() < 17050)
+			{
+				RespawnEntities(5);
+			}
+			else if (timer.Read() > 21000 && timer.Read() < 21050)
+			{
+				RespawnEntities(6);
+			}
+			else if (timer.Read() > 24000 && timer.Read() < 24050)
+			{
+				RespawnEntities(7);
+			}
+			else if (timer.Read() > 28000 && timer.Read() < 28050)
+			{
+				RespawnEntities(8);
+			}
+			else if (timer.Read() > 31500 && timer.Read() < 31550)
+			{
+				RespawnEntities(9);
+			}
+			else if (timer.Read() > 34000 && timer.Read() < 34050)
+			{
+				RespawnEntities(10);
+			}
+			else if (timer.Read() > 37000 && timer.Read() < 37050)
+			{
+				RespawnEntities(11);
+			}
+			else if (timer.Read() > 40000 && timer.Read() < 40050)
+			{
+				RespawnEntities(12);
+			}
+			else if (timer.Read() > 42500 && timer.Read() < 42550)
+			{
+				RespawnEntities(13);
+			}
+			else if (timer.Read() > 45500 && timer.Read() < 45550)
+			{
+				RespawnEntities(14);
+			}
+			else if (timer.Read() > 48000 && timer.Read() < 48050)
+			{
+				RespawnEntities(15);
+			}
+			else if (timer.Read() > 51000 && timer.Read() < 51050)
+			{
+				RespawnEntities(16);
+			}
+			else if (timer.Read() > 53500 && timer.Read() < 53550)
+			{
+				RespawnEntities(17);
+			}
+			else if (timer.Read() > 56000 && timer.Read() < 56050)
+			{
+				RespawnEntities(18);
+			}
+			else if (timer.Read() > 59000 && timer.Read() < 59050)
+			{
+				RespawnEntities(19);
+			}
+			else if (timer.Read() > 62000 && timer.Read() < 62050)
+			{
+				RespawnEntities(20);
+			}
+			else if (timer.Read() > 65000 && timer.Read() < 65050)
+			{
+				App->gui->Create_Label(Element_type::LABEL, { 250, 300 }, true, true, " CONGRATULATIONS", { 255,255,255,0 }, App->font->bigger, nullptr);
+				App->gui->Create_Label(Element_type::LABEL, { 250, 400 }, true, true, "LEVEL COMPLETED!!", { 255,255,255,0 }, App->font->bigger, nullptr);
+			}
+			else if (timer.Read() > 67000 && timer.Read() < 67050)
+			{
+				App->fade->FadeToBlack(this, this, 1.3f);
+				loading_menu = true;
+			}
+
 	}
+
 
 	if (lifes != 0 && actual_level == 1)
 	{
