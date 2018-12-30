@@ -62,6 +62,8 @@ bool j1Scene::Start()
 
 	srand(time(NULL));
 
+	lifes = 3;
+
 	return true;
 }
 
@@ -399,6 +401,15 @@ bool j1Scene::Update(float dt)
 		}
 	}
 
+	if (lifes != 0 && actual_level == 1)
+	{
+		if (lifes == 3)
+			App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1550, 139, 114, 57 }, true, true, false, App->gui->GetAtlas(), nullptr);
+		if (lifes == 2)
+			App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1550, 201, 114, 57 }, true, true, false, App->gui->GetAtlas(), nullptr);
+		if (lifes == 1)
+			App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1550, 260, 114, 57 }, true, true, false, App->gui->GetAtlas(), nullptr);
+	}
 	
 	return true;
 }
@@ -753,19 +764,14 @@ void j1Scene::Create_UI_Elements()
 		if (level_to_load->data->lvl == 1 )
 		{
 			HideCursor(true);
-			// PLAYER LIVES 
 
-			/*if (App->entityManager->player->lifes == 5)
-				App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1551, 21, 143, 56 }, true, true, false, App->gui->GetAtlas(), nullptr);
-			if (App->entityManager->player->lifes == 4)
-				App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1551, 81, 143, 56 }, true, true, false, App->gui->GetAtlas(), nullptr);
-			if (App->entityManager->player->lifes == 3)
-				App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1551, 141, 143, 56 }, true, true, false, App->gui->GetAtlas(), nullptr);
-			if (App->entityManager->player->lifes == 2)
-				App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1551, 202, 143, 56 }, true, true, false, App->gui->GetAtlas(), nullptr);
-			if (App->entityManager->player->lifes == 1)
-				App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1551, 261, 143, 56 }, true, true, false, App->gui->GetAtlas(), nullptr);*/
-
+			if (lifes == 3)
+				App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1550, 139, 114, 57 }, true, true, false, App->gui->GetAtlas(), nullptr);
+			if (lifes == 2)
+				App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1550, 201, 114, 57 }, true, true, false, App->gui->GetAtlas(), nullptr);
+			if (lifes == 1)
+				App->gui->Create_Image(Element_type::IMAGE, { 10, 10 }, { 1550, 260, 114, 57 }, true, true, false, App->gui->GetAtlas(), nullptr);
+			
 			Gui_Elements* Coin = App->gui->Create_Image(Element_type::IMAGE, {870, 18}, {648, 33, 56, 52}, true, true, false, App->gui->GetAtlas(), nullptr); 
 			Coins = App->gui->Create_Label(Element_type::LABEL, { 70, -18 }, true, true, "0", { 255, 255, 255, 0 }, App->font->bigger, Coin);
 			
