@@ -105,15 +105,29 @@ void j1Bomb::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c2->type == COLLIDER_PLAYER)
 	{
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT && current_animation != &dead)
+		if (App->scene->mode1)
 		{
-			App->audio->PlayFx(bomb_fx);
-			current_animation = &dead;
-			App->scene->lifes--;
-			App->scene->score -= 10;
-			//fruits destroyed + 1
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT && current_animation != &dead)
+			{
+				App->audio->PlayFx(bomb_fx);
+				current_animation = &dead;
+				App->scene->lifes--;
+				App->scene->score -= 10;
 
+			}
 		}
+		else if (App->scene->mode2)
+		{
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && current_animation != &dead)
+			{
+				App->audio->PlayFx(bomb_fx);
+				current_animation = &dead;
+				App->scene->lifes--;
+				App->scene->score -= 10;
+
+			}
+		}
+		
 	}
 }
 

@@ -76,6 +76,8 @@ public:
 
 	int lifes = 3;
 	int score = 0;
+	bool mode1 = false;
+	bool mode2 = false;
 
 	Gui_Elements* Settings_Menu = nullptr;
 

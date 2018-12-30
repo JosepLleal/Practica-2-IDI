@@ -32,7 +32,8 @@ enum class Button_type
 
 enum class Function
 {
-	PLAY,
+	PLAY1,
+	PLAY2,
 	EXIT,
 	GITHUB,
 	GITHUB_JOSEP,

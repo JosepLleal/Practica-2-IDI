@@ -107,14 +107,29 @@ void j1Yellow_Fruit::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c2->type == COLLIDER_PLAYER)
 	{
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT && current_animation != &dead)
+		if (App->scene->mode1)
 		{
-			App->audio->PlayFx(fruit_fx);
-			current_animation = &dead;
-			App->scene->score += 2;
-			//fruits destroyed + 1
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT && current_animation != &dead)
+			{
+				App->audio->PlayFx(fruit_fx);
+				current_animation = &dead;
+				App->scene->score += 2;
+				
 
+			}
 		}
+		else if (App->scene->mode2)
+		{
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && current_animation != &dead)
+			{
+				App->audio->PlayFx(fruit_fx);
+				current_animation = &dead;
+				App->scene->score += 2;
+				
+
+			}
+		}
+		
 	}
 }
 

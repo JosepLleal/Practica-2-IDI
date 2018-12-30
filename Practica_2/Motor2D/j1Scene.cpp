@@ -90,10 +90,17 @@ bool j1Scene::Update(float dt)
 	{
 		if (iterator->data->type == Element_type::BUTTON && iterator->data->do_action == true && App->fade->IsFadingOut() == false)
 		{
-			if (iterator->data->funct == Function::PLAY)
+			if (iterator->data->funct == Function::PLAY1)
 			{
 				App->fade->FadeToBlack(this, this, 1.3f);
 				loading_lvl1 = true;
+				mode1 = true;
+			}
+			else if (iterator->data->funct == Function::PLAY2)
+			{
+				App->fade->FadeToBlack(this, this, 1.3f);
+				loading_lvl1 = true;
+				mode2 = true;
 			}
 			else if (iterator->data->funct == Function::SETTINGS )
 			{
@@ -508,6 +515,12 @@ void j1Scene::Level_Load(uint number)
 		actual_level = level_to_load->data->lvl;
 		lifes = 3;
 		score = 0;
+
+		if (mode1)
+			mode1 = false;
+		
+		if (mode2)
+			mode2 = false;
 	}
 
 
@@ -717,13 +730,15 @@ void j1Scene::Create_UI_Elements()
 		/*SDL_Rect title_rect = { 0, 0, 500, 300 };
 		App->gui->Create_Image(Element_type::IMAGE, { 275, -20 }, title_rect, true, false, false, title, Main_Menu);*/
 
-		Gui_Elements* Play = App->gui->Create_Button(Element_type::BUTTON, { 415, 300 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::PLAY, Main_Menu);
-		Gui_Elements* MainMenu_Settings = App->gui->Create_Button(Element_type::BUTTON, { 415, 370 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::SETTINGS, Main_Menu);
-		Gui_Elements* Credits = App->gui->Create_Button(Element_type::BUTTON, { 415, 440 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::CREDITS, Main_Menu);
-		Gui_Elements* Exit = App->gui->Create_Button(Element_type::BUTTON, { 415, 510 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::EXIT, Main_Menu);
+		Gui_Elements* Play = App->gui->Create_Button(Element_type::BUTTON, { 415, 300 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::PLAY1, Main_Menu);
+		Gui_Elements* Play2 = App->gui->Create_Button(Element_type::BUTTON, { 415, 370 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::PLAY2, Main_Menu);
+		Gui_Elements* MainMenu_Settings = App->gui->Create_Button(Element_type::BUTTON, { 415, 440 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::SETTINGS, Main_Menu);
+		Gui_Elements* Credits = App->gui->Create_Button(Element_type::BUTTON, { 415, 510 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::CREDITS, Main_Menu);
+		Gui_Elements* Exit = App->gui->Create_Button(Element_type::BUTTON, { 415, 580 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::EXIT, Main_Menu);
 
 	
-		App->gui->Create_Label(Element_type::LABEL, { 60, 6 }, true, true, "PLAY", { 255,255,255,0 }, App->font->default, Play);
+		App->gui->Create_Label(Element_type::LABEL, { 20, 6 }, true, true, "GAME MODE 1", { 255,255,255,0 }, App->font->default, Play);
+		App->gui->Create_Label(Element_type::LABEL, { 20, 6 }, true, true, "GAME MODE 2", { 255,255,255,0 }, App->font->default, Play2);
 		App->gui->Create_Label(Element_type::LABEL, { 30, 6 }, true, true, "SETTINGS", { 255,255,255,0 }, App->font->default, MainMenu_Settings);
 		App->gui->Create_Label(Element_type::LABEL, { 40, 6 }, true, true, "CREDITS", { 255,255,255,0 }, App->font->default, Credits);
 		App->gui->Create_Label(Element_type::LABEL, { 60, 6 }, true, true, "EXIT", { 255,255,255,0 }, App->font->default, Exit);
