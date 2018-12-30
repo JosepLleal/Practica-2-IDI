@@ -54,7 +54,10 @@ bool j1Blue_Fruit::Update(float dt, bool do_logic)
 
 	if (!App->scene->pause)
 	{
-		speed.y += 1;
+		if (speed.y < 15)
+		{
+			speed.y += 1;
+		}
 		if (current_animation == &idle)
 		{
 			position.x += speed.x;
