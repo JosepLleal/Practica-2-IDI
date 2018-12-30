@@ -5,45 +5,13 @@
 	<textures />
 	<audio />
 	<map />
-	<pathfinding />
 	<fonts />
-	<entityManager>
-		<player>
-			<position x="5796.4458" y="413.899902" />
-			<invert_gravity value="false" />
-			<current_level value="1" />
-			<god_mode value="true" />
-			<lifes value="4" />
-			<timer value="10315" />
-			<coins value="29" />
-			<score value="3900" />
-		</player>
-		<entities>
-			<entity position_x="0" position_y="0" />
-			<entity position_x="2166" position_y="20868.1016" />
-			<entity position_x="3906" position_y="20958.1016" />
-			<entity position_x="5006.78174" position_y="20758.1016" />
-			<entity position_x="5691.46826" position_y="361.874878" />
-			<entity position_x="3998" position_y="580" />
-			<entity position_x="3830" position_y="566" />
-			<entity position_x="0" position_y="0" />
-			<entity position_x="0" position_y="0" />
-			<entity position_x="0" position_y="0" />
-			<entity position_x="0" position_y="0" />
-			<entity position_x="0" position_y="0" />
-			<entity position_x="0" position_y="0" />
-			<entity position_x="0" position_y="0" />
-			<entity position_x="0" position_y="0" />
-			<entity position_x="0" position_y="0" />
-			<entity position_x="0" position_y="0" />
-			<entity position_x="0" position_y="0" />
-		</entities>
-	</entityManager>
+	<entityManager />
 	<gui />
 	<scene />
 	<:anonymous />
 	<fade />
 	<renderer>
-		<camera x="-5161" y="-47" />
+		<camera x="0" y="0" />
 	</renderer>
 </game_state>

@@ -135,7 +135,6 @@ bool j1Scene::Update(float dt)
 							App->SaveGame();
 							
 						}
-						
 						else if (iterator->data->funct == Function::SETTINGS)
 						{
 							Menu->visible = !Menu->visible;
@@ -221,7 +220,6 @@ bool j1Scene::Update(float dt)
 					}
 				}
 			}
-			iterator->data->do_action = false;
 		}
 	}
 	// -------------------------------------------------------------------------------------------
@@ -269,7 +267,7 @@ bool j1Scene::Update(float dt)
 		App->caped_frames = !App->caped_frames;
 	}
 
-	if (lifes == 0)
+	if (lifes <= 0)
 	{
 		App->fade->FadeToBlack(this, this, 1.3f);
 		loading_menu = true;
@@ -307,11 +305,6 @@ bool j1Scene::Update(float dt)
 			iterator->data->Draw_InGame_Element();
 		}
 	}
-
-	/*if (actual_level == 0)
-	{
-		App->entityManager->player->position.x = 150;
-	}*/
 
 	App->input->GetMousePosition(Mouse_Pos.x, Mouse_Pos.y);
 
@@ -429,12 +422,14 @@ bool j1Scene::PostUpdate()
 			{
 				pause = !pause;
 				Menu->visible = !Menu->visible;
+				HideCursor(true);
 			
 			}
 			else if (!Menu->visible && !Settings_Menu->visible)
 			{
 				pause = !pause;
 				Menu->visible = !Menu->visible;
+				HideCursor(false);
 				
 			}
 			else if (!Menu->visible && Settings_Menu->visible)
@@ -634,7 +629,7 @@ void j1Scene::RespawnEntities(int round)
 	}
 	else if (round == 14)
 	{
-		App->entityManager->CreateEntity(100, 768, RandomEntity(), -35, 0);
+		App->entityManager->CreateEntity(100, 768, RandomEntity(), -35, 5);
 		App->entityManager->CreateEntity(250, 768, BOMB, -30, 8);
 		App->entityManager->CreateEntity(450, 768, RandomEntity(), -28, 7);
 		App->entityManager->CreateEntity(500, 768, BOMB, -35, 4);
@@ -723,15 +718,15 @@ void j1Scene::Create_UI_Elements()
 		App->gui->Create_Image(Element_type::IMAGE, { 275, -20 }, title_rect, true, false, false, title, Main_Menu);*/
 
 		Gui_Elements* Play = App->gui->Create_Button(Element_type::BUTTON, { 415, 300 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::PLAY, Main_Menu);
-		Gui_Elements* MainMenu_Settings = App->gui->Create_Button(Element_type::BUTTON, { 415, 440 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::SETTINGS, Main_Menu);
-		Gui_Elements* Credits = App->gui->Create_Button(Element_type::BUTTON, { 415, 510 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::CREDITS, Main_Menu);
-		Gui_Elements* Exit = App->gui->Create_Button(Element_type::BUTTON, { 415, 580 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::EXIT, Main_Menu);
+		Gui_Elements* MainMenu_Settings = App->gui->Create_Button(Element_type::BUTTON, { 415, 370 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::SETTINGS, Main_Menu);
+		Gui_Elements* Credits = App->gui->Create_Button(Element_type::BUTTON, { 415, 440 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::CREDITS, Main_Menu);
+		Gui_Elements* Exit = App->gui->Create_Button(Element_type::BUTTON, { 415, 510 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, true, false, App->gui->GetAtlas(), Function::EXIT, Main_Menu);
 
 	
-		App->gui->Create_Label(Element_type::LABEL, { 30, 6 }, true, true, "NEW GAME", { 255,255,255,0 }, App->font->default, Play);
+		App->gui->Create_Label(Element_type::LABEL, { 60, 6 }, true, true, "PLAY", { 255,255,255,0 }, App->font->default, Play);
 		App->gui->Create_Label(Element_type::LABEL, { 30, 6 }, true, true, "SETTINGS", { 255,255,255,0 }, App->font->default, MainMenu_Settings);
 		App->gui->Create_Label(Element_type::LABEL, { 40, 6 }, true, true, "CREDITS", { 255,255,255,0 }, App->font->default, Credits);
-		App->gui->Create_Label(Element_type::LABEL, { 57, 6 }, true, true, "EXIT", { 255,255,255,0 }, App->font->default, Exit);
+		App->gui->Create_Label(Element_type::LABEL, { 60, 6 }, true, true, "EXIT", { 255,255,255,0 }, App->font->default, Exit);
 
 		Credits_Menu = App->gui->Create_Image(Element_type::IMAGE, { 120, 80 }, { 621, 377, 785, 568 }, false, false, false, App->gui->GetAtlas());
 
@@ -751,12 +746,6 @@ void j1Scene::Create_UI_Elements()
 		App->gui->Create_Label(Element_type::LABEL, { 37, 290 }, true, true, "WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE ", { 100,40, 0 ,0 }, App->font->Credits, Credits_Menu);
 		App->gui->Create_Label(Element_type::LABEL, { 37, 310 }, true, true, "SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.", { 100,40, 0 ,0 }, App->font->Credits, Credits_Menu);
 
-		App->gui->Create_Label(Element_type::LABEL, { 37, 350 }, true, true, "The Team:", { 100,40, 0 ,0 }, App->font->default, Credits_Menu);
-
-		App->gui->Create_Button(Element_type::BUTTON, { 100, 450 }, { 650, 117 , 45, 49 }, { 699, 117 , 45, 49 }, { 748, 113 , 45, 53 }, false, false, App->gui->GetAtlas(), Function::GITHUB_JOAN, Credits_Menu);
-		App->gui->Create_Label(Element_type::LABEL, { 170, 460 }, true, true, "Joan Barduena", { 100,40, 0 ,0 }, App->font->default, Credits_Menu);
-		App->gui->Create_Button(Element_type::BUTTON, { 430, 450 }, { 650, 117 , 45, 49 }, { 699, 117 , 45, 49 }, { 748, 113 , 45, 53 }, false, false, App->gui->GetAtlas(), Function::GITHUB_JOSEP, Credits_Menu);
-		App->gui->Create_Label(Element_type::LABEL, { 500, 460 }, true, true, "Josep Lleal", { 100,40, 0 ,0 }, App->font->default, Credits_Menu);
 
 	}
 	else if (level_to_load->data->lvl == 1)
@@ -766,8 +755,8 @@ void j1Scene::Create_UI_Elements()
 		{
 			HideCursor(true);
 			
-			Gui_Elements* Coin = App->gui->Create_Image(Element_type::IMAGE, {870, 18}, {648, 33, 56, 52}, true, true, false, App->gui->GetAtlas(), nullptr); 
-			Score = App->gui->Create_Label(Element_type::LABEL, { 60, -18 }, true, true, score, { 255, 255, 255, 0 }, App->font->bigger, Coin);
+			Gui_Elements* Coin = App->gui->Create_Image(Element_type::IMAGE, {800, 18}, {648, 33, 75, 70}, true, true, false, App->gui->GetAtlas(), nullptr); 
+			Score = App->gui->Create_Label(Element_type::LABEL, { 100, -10 }, true, true, score, { 255, 255, 255, 0 }, App->font->bigger, Coin);
 			
 			/*Gui_Elements* Score = App->gui->Create_Label(Element_type::LABEL, { 820, 720 }, true, true, "SCORE:", { 255, 255, 255, 0 }, App->font->default, nullptr);
 			Score_num = App->gui->Create_Label(Element_type::LABEL, {100, 0 }, true, true, "0", { 255, 255, 255, 0 }, App->font->default, Score);*/
@@ -775,16 +764,10 @@ void j1Scene::Create_UI_Elements()
 
 		Menu = App->gui->Create_Image(Element_type::IMAGE, { 355, 200 }, { 8, 459, 315, 402 }, false, false, false, App->gui->GetAtlas());
 		
-		Gui_Elements* Resume = App->gui->Create_Button(Element_type::BUTTON, { 62, 45 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, false, false, App->gui->GetAtlas(), Function::RESUME, Menu);
+		Gui_Elements* Resume = App->gui->Create_Button(Element_type::BUTTON, { 62, 115 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, false, false, App->gui->GetAtlas(), Function::RESUME, Menu);
 		App->gui->Create_Label(Element_type::LABEL, { 35, 6 }, false, false, "RESUME", { 255,255,255,0 }, App->font->default, Resume);
 
-		Gui_Elements* Save = App->gui->Create_Button(Element_type::BUTTON, { 62, 185 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, false, false, App->gui->GetAtlas(), Function::SAVE, Menu);
-		App->gui->Create_Label(Element_type::LABEL, { 25, 6 }, false, false, "SAVE GAME", { 255,255,255,0 }, App->font->default, Save);
-
-		Gui_Elements* Settings = App->gui->Create_Button(Element_type::BUTTON, { 62, 255 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, false, false, App->gui->GetAtlas(), Function::SETTINGS, Menu);
-		App->gui->Create_Label(Element_type::LABEL, { 30, 6 }, false, false, "SETTINGS", { 255,255,255,0 }, App->font->default, Settings);
-
-		Gui_Elements* Main_Menu = App->gui->Create_Button(Element_type::BUTTON, { 62, 325 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, false, false, App->gui->GetAtlas(), Function::MENU, Menu);
+		Gui_Elements* Main_Menu = App->gui->Create_Button(Element_type::BUTTON, { 62, 255 }, { 1070, 260 , 190, 49 }, { 650, 260, 190, 49 }, { 860, 260, 190, 49 }, false, false, App->gui->GetAtlas(), Function::MENU, Menu);
 		App->gui->Create_Label(Element_type::LABEL, { 25, 6 }, false, false, "MAIN MENU", { 255,255,255,0 }, App->font->default, Main_Menu);
 
 		Gui_Elements* Esc = App->gui->Create_Button(Element_type::BUTTON, { 290, -10 }, { 460, 463 , 35, 38 }, { 422, 463 , 35, 38 }, { 384, 463 , 35, 38 }, false, false, App->gui->GetAtlas(), Function::RESUME, Menu);

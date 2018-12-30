@@ -74,7 +74,7 @@ public:
 	bool saved_game = false;
 	bool loading_saved_game = false;
 
-	uint lifes = 3;
+	int lifes = 3;
 	int score = 0;
 
 	Gui_Elements* Settings_Menu = nullptr;
